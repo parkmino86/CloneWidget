@@ -5,15 +5,16 @@
 //  Created by minoh.park on 8/23/24.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 // MARK: - View
+
 struct CategoryButton: View {
-    let store: Store<CategoryButtonCore.State, CategoryButtonCore.Action>
-    
+    let store: StoreOf<CategoryButtonCore>
+
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(store, observe: { $0 }) { viewStore in
             Text(viewStore.text)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
@@ -28,18 +29,19 @@ struct CategoryButton: View {
 }
 
 // MARK: - Reducer
+
 @Reducer
 struct CategoryButtonCore {
     struct State: Equatable, Identifiable {
-        let id: UUID = UUID()
+        let id: UUID = .init()
         var text: String
         var isSelected: Bool
     }
-    
+
     enum Action: Equatable {
         case categorySelected
     }
-    
+
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
@@ -52,6 +54,7 @@ struct CategoryButtonCore {
 }
 
 // MARK: - Preview
+
 #Preview {
     Group {
         CategoryButton(
@@ -60,7 +63,7 @@ struct CategoryButtonCore {
                 reducer: { CategoryButtonCore() }
             )
         )
-        
+
         CategoryButton(
             store: Store(
                 initialState: CategoryButtonCore.State(text: "Unselected Tag", isSelected: false),

@@ -5,53 +5,57 @@
 //  Created by minoh.park on 8/15/24.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct RootView: View {
-    let store: StoreOf<RootCore>
-    
+    let store: StoreOf<RootDomain>
+
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(store, observe: { $0 }) { viewStore in
             TabView(selection: viewStore.binding(
                 get: \.selectedTab,
-                send: RootCore.Action.tabSelected
+                send: RootDomain.Action.tabSelected
             )) {
                 TodayView(store: self.store.scope(
-                    state: \.todayState,
-                    action: \.today)
-                    )
-                    .tabItem {
-                        Label("Today", systemImage: "calendar")
-                    }
-                    .tag(RootCore.Tab.today)
-                
+                    state: \.today,
+                    action: \.today
+                )
+                )
+                .tabItem {
+                    Label("Today", systemImage: "calendar")
+                }
+                .tag(RootDomain.Tab.today)
+
                 FotoView(store: self.store.scope(
-                    state: \.fotoState,
-                    action: \.foto)
-                    )
-                    .tabItem {
-                        Label("Foto", systemImage: "photo")
-                    }
-                    .tag(RootCore.Tab.foto)
-                
+                    state: \.foto,
+                    action: \.foto
+                )
+                )
+                .tabItem {
+                    Label("Foto", systemImage: "photo")
+                }
+                .tag(RootDomain.Tab.foto)
+
                 ExplorerView(store: self.store.scope(
-                    state: \.explorerState,
-                    action: \.explorer)
-                    )
-                    .tabItem {
-                        Label("Explorer", systemImage: "safari")
-                    }
-                    .tag(RootCore.Tab.explorer)
-                
+                    state: \.explorer,
+                    action: \.explorer
+                )
+                )
+                .tabItem {
+                    Label("Explorer", systemImage: "safari")
+                }
+                .tag(RootDomain.Tab.explorer)
+
                 MyPageView(store: self.store.scope(
-                    state: \.myPageState,
-                    action: \.myPage)
-                    )
-                    .tabItem {
-                        Label("My Page", systemImage: "person")
-                    }
-                    .tag(RootCore.Tab.myPage)
+                    state: \.myPage,
+                    action: \.myPage
+                )
+                )
+                .tabItem {
+                    Label("My Page", systemImage: "person")
+                }
+                .tag(RootDomain.Tab.myPage)
             }
         }
     }
@@ -59,7 +63,7 @@ struct RootView: View {
 
 #Preview {
     RootView(store: Store(
-        initialState: RootCore.State(),
-        reducer: { RootCore() }
+        initialState: RootDomain.State(),
+        reducer: { RootDomain() }
     ))
 }

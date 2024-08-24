@@ -5,12 +5,12 @@
 //  Created by minoh.park on 8/15/24.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct ExplorerView: View {
-    let store: Store<ExplorerCore.State, ExplorerCore.Action>
-    
+    let store: StoreOf<ExplorerDomain>
+
     var body: some View {
         Text("Explorer View")
     }

@@ -1,5 +1,5 @@
 //
-//  RootCore.swift
+//  RootDomain.swift
 //  CloneWidget
 //
 //  Created by minoh.park on 8/15/24.
@@ -8,46 +8,43 @@
 import ComposableArchitecture
 
 @Reducer
-struct RootCore {
-    
+struct RootDomain {
     enum Tab {
         case today
         case foto
         case explorer
         case myPage
     }
-    
+
     struct State: Equatable {
         var selectedTab = Tab.explorer
-        var todayState = TodayCore.State()
-        var fotoState = FotoCore.State()
-        var explorerState = ExplorerCore.State()
-        var myPageState = MyPageCore.State()
+        var today = TodayDomain.State()
+        var foto = FotoDomain.State()
+        var explorer = ExplorerDomain.State()
+        var myPage = MyPageDomain.State()
     }
-    
+
     enum Action: Equatable {
         case tabSelected(Tab)
-        case today(TodayCore.Action)
-        case foto(FotoCore.Action)
-        case explorer(ExplorerCore.Action)
-        case myPage(MyPageCore.Action)
+        case today(TodayDomain.Action)
+        case foto(FotoDomain.Action)
+        case explorer(ExplorerDomain.Action)
+        case myPage(MyPageDomain.Action)
     }
-    
+
     var body: some Reducer<State, Action> {
+        Scope(state: \.foto, action: \.foto) {
+            FotoDomain()
+          }
         Reduce { state, action in
             switch action {
-            case .tabSelected(let tab):
+            case let .tabSelected(tab):
                 state.selectedTab = tab
                 return .none
-            case .today:
-                return .none
-            case .foto:
-                return .none
-            case .explorer:
-                return .none
-            case .myPage:
+            default:
                 return .none
             }
         }
     }
+
 }

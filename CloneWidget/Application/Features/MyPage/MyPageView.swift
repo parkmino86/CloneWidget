@@ -5,12 +5,12 @@
 //  Created by minoh.park on 8/15/24.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct MyPageView: View {
-    let store: Store<MyPageCore.State, MyPageCore.Action>
-    
+    let store: StoreOf<MyPageDomain>
+
     var body: some View {
         Text("My Page View")
     }

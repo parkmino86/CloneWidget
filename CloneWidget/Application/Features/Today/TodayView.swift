@@ -5,12 +5,12 @@
 //  Created by minoh.park on 8/15/24.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct TodayView: View {
-    let store: Store<TodayCore.State, TodayCore.Action>
-    
+    let store: StoreOf<TodayDomain>
+
     var body: some View {
         Text("Today View")
     }

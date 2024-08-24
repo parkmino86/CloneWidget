@@ -9,18 +9,13 @@ import ComposableArchitecture
 
 @Reducer
 struct MyPageDomain {
-    
-    struct State: Equatable {
-        
-    }
-    
-    enum Action: Equatable {
-        
-    }
-    
+    struct State: Equatable {}
+
+    enum Action: Equatable {}
+
     var body: some Reducer<State, Action> {
-        Reduce { state, action in
-            return .none
+        Reduce { _, _ in
+            .none
         }
     }
 }
