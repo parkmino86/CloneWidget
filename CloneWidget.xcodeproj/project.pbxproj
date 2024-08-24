@@ -23,6 +23,11 @@
 		E31F47792C6E1B530053A74D /* MyPageDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47782C6E1B530053A74D /* MyPageDomain.swift */; };
 		E340E6C42C78DA3B00CD901F /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E340E6C32C78DA3B00CD901F /* CategoryButton.swift */; };
 		E340E6C62C78DA4B00CD901F /* CategorySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */; };
+		E37E91982C79726E000CB881 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91972C79726E000CB881 /* AppLog.swift */; };
+		E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91992C7972A9000CB881 /* Date+Extensions.swift */; };
+		E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A22C79845F000CB881 /* ArtistMemberView.swift */; };
+		E37E91A52C798469000CB881 /* ArtistMemberDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */; };
+		E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FADC22C79BADB00290FE1 /* FotoClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,11 @@
 		E31F47782C6E1B530053A74D /* MyPageDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDomain.swift; sourceTree = "<group>"; };
 		E340E6C32C78DA3B00CD901F /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectorView.swift; sourceTree = "<group>"; };
+		E37E91972C79726E000CB881 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		E37E91992C7972A9000CB881 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		E37E91A22C79845F000CB881 /* ArtistMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMemberView.swift; sourceTree = "<group>"; };
+		E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMemberDomain.swift; sourceTree = "<group>"; };
+		E37FADC22C79BADB00290FE1 /* FotoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +224,7 @@
 		E30FAB7A2C78C52E009C0807 /* AppLog */ = {
 			isa = PBXGroup;
 			children = (
+				E37E91972C79726E000CB881 /* AppLog.swift */,
 			);
 			path = AppLog;
 			sourceTree = "<group>";
@@ -236,6 +247,7 @@
 		E30FAB7D2C78C549009C0807 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E37E91992C7972A9000CB881 /* Date+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -291,6 +303,10 @@
 		E31F47612C6E15F70053A74D /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				E31F47662C6E1B020053A74D /* Today */,
+				E31F47672C6E1B070053A74D /* Foto */,
+				E31F47682C6E1B0C0053A74D /* Explorer */,
+				E31F47692C6E1B120053A74D /* MyPage */,
 				E31F47522C6E10A90053A74D /* RootView.swift */,
 				E31F47632C6E169D0053A74D /* RootDomain.swift */,
 			);
@@ -300,7 +316,6 @@
 		E31F47622C6E16670053A74D /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				E31F47612C6E15F70053A74D /* Root */,
 				E31F47652C6E1AE20053A74D /* Features */,
 				E30FAB6A2C78C3C6009C0807 /* Widget */,
 				E30FAB652C78C2BC009C0807 /* UI */,
@@ -313,10 +328,7 @@
 		E31F47652C6E1AE20053A74D /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				E31F47662C6E1B020053A74D /* Today */,
-				E31F47672C6E1B070053A74D /* Foto */,
-				E31F47682C6E1B0C0053A74D /* Explorer */,
-				E31F47692C6E1B120053A74D /* MyPage */,
+				E31F47612C6E15F70053A74D /* Root */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -333,6 +345,8 @@
 		E31F47672C6E1B070053A74D /* Foto */ = {
 			isa = PBXGroup;
 			children = (
+				E37E91A12C798436000CB881 /* Artist */,
+				E37FADC22C79BADB00290FE1 /* FotoClient.swift */,
 				E31F476E2C6E1B320053A74D /* FotoView.swift */,
 				E31F47702C6E1B380053A74D /* FotoDomain.swift */,
 			);
@@ -360,10 +374,19 @@
 		E340E6C72C78DA4E00CD901F /* CategorySelectorView */ = {
 			isa = PBXGroup;
 			children = (
-				E340E6C32C78DA3B00CD901F /* CategoryButton.swift */,
 				E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */,
+				E340E6C32C78DA3B00CD901F /* CategoryButton.swift */,
 			);
 			path = CategorySelectorView;
+			sourceTree = "<group>";
+		};
+		E37E91A12C798436000CB881 /* Artist */ = {
+			isa = PBXGroup;
+			children = (
+				E37E91A22C79845F000CB881 /* ArtistMemberView.swift */,
+				E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */,
+			);
+			path = Artist;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,12 +469,17 @@
 				E31F47642C6E169D0053A74D /* RootDomain.swift in Sources */,
 				E31F47732C6E1B400053A74D /* ExplorerView.swift in Sources */,
 				E31F47532C6E10A90053A74D /* RootView.swift in Sources */,
+				E37E91A52C798469000CB881 /* ArtistMemberDomain.swift in Sources */,
 				E31F47712C6E1B380053A74D /* FotoDomain.swift in Sources */,
 				E31F476B2C6E1B260053A74D /* TodayView.swift in Sources */,
 				E31F47512C6E10A90053A74D /* CloneWidgetApp.swift in Sources */,
+				E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */,
 				E31F476F2C6E1B320053A74D /* FotoView.swift in Sources */,
+				E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */,
+				E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */,
 				E31F47772C6E1B4D0053A74D /* MyPageView.swift in Sources */,
 				E340E6C42C78DA3B00CD901F /* CategoryButton.swift in Sources */,
+				E37E91982C79726E000CB881 /* AppLog.swift in Sources */,
 				E31F47752C6E1B470053A74D /* ExplorerDomain.swift in Sources */,
 				E340E6C62C78DA4B00CD901F /* CategorySelectorView.swift in Sources */,
 				E31F476D2C6E1B2C0053A74D /* TodayDomain.swift in Sources */,

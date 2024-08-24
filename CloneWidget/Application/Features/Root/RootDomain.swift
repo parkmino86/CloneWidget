@@ -35,7 +35,7 @@ struct RootDomain {
     var body: some Reducer<State, Action> {
         Scope(state: \.foto, action: \.foto) {
             FotoDomain()
-          }
+        }
         Reduce { state, action in
             switch action {
             case let .tabSelected(tab):
@@ -46,5 +46,4 @@ struct RootDomain {
             }
         }
     }
-
 }

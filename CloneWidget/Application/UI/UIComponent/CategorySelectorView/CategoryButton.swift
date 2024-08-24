@@ -22,7 +22,7 @@ struct CategoryButton: View {
                 .foregroundColor(viewStore.isSelected ? Color.white : Color.black)
                 .cornerRadius(20)
                 .onTapGesture {
-                    viewStore.send(.categorySelected)
+                    viewStore.send(.didSelectCategoryButton)
                 }
         }
     }
@@ -39,13 +39,13 @@ struct CategoryButtonCore {
     }
 
     enum Action: Equatable {
-        case categorySelected
+        case didSelectCategoryButton
     }
 
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case .categorySelected:
+            case .didSelectCategoryButton:
                 state.isSelected.toggle()
                 return .none
             }

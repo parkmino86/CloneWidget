@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - View
 
 struct CategorySelectorView: View {
-    let store: StoreOf<CategorySelectorDomain>
+    let store: StoreOf<CategorySelectorCore>
 
     var body: some View {
         WithViewStore(store, observe: { $0 }) { _ in
@@ -32,32 +32,19 @@ struct CategorySelectorView: View {
 // MARK: - Reducer
 
 @Reducer
-struct CategorySelectorDomain {
+struct CategorySelectorCore {
     struct State: Equatable {
         var categories: IdentifiedArrayOf<CategoryButtonCore.State>
-        var selectedCategory: String?
     }
 
     enum Action: Equatable {
-        case categorySelected(String)
         case categoryButton(id: UUID, action: CategoryButtonCore.Action)
     }
 
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case let .categorySelected(categoryText):
-                state.categories = IdentifiedArray(
-                    uniqueElements: state.categories.map { category in
-                        var updatedCategory = category
-                        updatedCategory.isSelected = category.text == categoryText
-                        return updatedCategory
-                    }
-                )
-                state.selectedCategory = categoryText
-                return .none
-
-            case let .categoryButton(id, .categorySelected):
+            case let .categoryButton(id, .didSelectCategoryButton):
                 state.categories = IdentifiedArray(
                     uniqueElements: state.categories.map { category in
                         var updatedCategory = category
@@ -65,7 +52,6 @@ struct CategorySelectorDomain {
                         return updatedCategory
                     }
                 )
-                state.selectedCategory = state.categories.first(where: { $0.id == id })?.text
                 return .none
             }
         }
@@ -77,15 +63,14 @@ struct CategorySelectorDomain {
 #Preview {
     CategorySelectorView(
         store: Store(
-            initialState: CategorySelectorDomain.State(
+            initialState: CategorySelectorCore.State(
                 categories: [
                     CategoryButtonCore.State(text: "Category 1", isSelected: true),
                     CategoryButtonCore.State(text: "Category 2", isSelected: false),
                     CategoryButtonCore.State(text: "Category 3", isSelected: false),
-                ],
-                selectedCategory: nil
+                ]
             ),
-            reducer: { CategorySelectorDomain() }
+            reducer: { CategorySelectorCore() }
         )
     )
 }
