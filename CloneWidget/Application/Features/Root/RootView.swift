@@ -13,49 +13,52 @@ struct RootView: View {
 
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            TabView(selection: viewStore.binding(
-                get: \.selectedTab,
-                send: RootDomain.Action.tabSelected
-            )) {
-                TodayView(store: self.store.scope(
-                    state: \.today,
-                    action: \.today
-                )
-                )
-                .tabItem {
-                    Label("Today", systemImage: "calendar")
-                }
-                .tag(RootDomain.Tab.today)
+            ZStack {
+                TabView(selection: viewStore.binding(
+                    get: \.selectedTab,
+                    send: RootDomain.Action.tabSelected
+                )) {
+                    TodayView(store: self.store.scope(
+                        state: \.today,
+                        action: \.today
+                    )
+                    )
+                    .tabItem {
+                        Label("Today", systemImage: "calendar")
+                    }
+                    .tag(RootDomain.Tab.today)
 
-                FotoView(store: self.store.scope(
-                    state: \.foto,
-                    action: \.foto
-                )
-                )
-                .tabItem {
-                    Label("Foto", systemImage: "photo")
-                }
-                .tag(RootDomain.Tab.foto)
+                    FotoView(store: self.store.scope(
+                        state: \.foto,
+                        action: \.foto
+                    )
+                    )
+                    .tabItem {
+                        Label("Foto", systemImage: "photo")
+                    }
+                    .tag(RootDomain.Tab.foto)
 
-                ExplorerView(store: self.store.scope(
-                    state: \.explorer,
-                    action: \.explorer
-                )
-                )
-                .tabItem {
-                    Label("Explorer", systemImage: "safari")
-                }
-                .tag(RootDomain.Tab.explorer)
+                    ExplorerView(store: self.store.scope(
+                        state: \.explorer,
+                        action: \.explorer
+                    )
+                    )
+                    .tabItem {
+                        Label("Explorer", systemImage: "safari")
+                    }
+                    .tag(RootDomain.Tab.explorer)
 
-                MyPageView(store: self.store.scope(
-                    state: \.myPage,
-                    action: \.myPage
-                )
-                )
-                .tabItem {
-                    Label("My Page", systemImage: "person")
+                    MyPageView(store: self.store.scope(
+                        state: \.myPage,
+                        action: \.myPage
+                    )
+                    )
+                    .tabItem {
+                        Label("My Page", systemImage: "person")
+                    }
+                    .tag(RootDomain.Tab.myPage)
                 }
-                .tag(RootDomain.Tab.myPage)
+                LoadingOverlay()
             }
         }
     }

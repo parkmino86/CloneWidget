@@ -18,20 +18,20 @@ extension FotoClient: DependencyKey {
         let service = FotoService()
         return Self(
             fetchMembers: {
-                return try await service.fetchMembers()
+                try await service.fetchMembers()
             }
         )
     }()
-    
+
     static let previewValue: FotoClient = {
         let service = FotoService()
         return Self(
             fetchMembers: {
-                return try await service.fetchMembers()
+                try await service.fetchMembers()
             }
         )
     }()
-    
+
     private actor FotoService {
         private var storedMembers: [ArtistMemberDomain.State] = [
             ArtistMemberDomain.State(name: "Hongjoong", group: "ATEEZ"),
@@ -54,7 +54,7 @@ extension FotoClient: DependencyKey {
             ArtistMemberDomain.State(name: "Rosé", group: "BLACKPINK"),
             ArtistMemberDomain.State(name: "Lisa", group: "BLACKPINK"),
         ]
-        
+
         func fetchMembers() async throws -> [ArtistMemberDomain.State] {
             return storedMembers
         }

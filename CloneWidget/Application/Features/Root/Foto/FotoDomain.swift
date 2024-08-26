@@ -11,11 +11,11 @@ import Foundation
 @Reducer
 struct FotoDomain {
     @Dependency(\.fotoClient) var fotoClient
-    
+    @Dependency(\.loadingClient) var loadingClient
+
     struct State: Equatable {
-        var isLoading: Bool = false
         var errorMessage: String?
-        
+
         var allArtistMembers: [ArtistMemberDomain.State] = []
         var artistSelector: CategorySelectorCore.State = .init(categories: IdentifiedArrayOf())
         var artistMembers: IdentifiedArrayOf<ArtistMemberDomain.State> = []
@@ -27,7 +27,7 @@ struct FotoDomain {
         case onAppear
         case fetchAllArtistMembers
         case fetchAllArtistMembersResponse(TaskResult<[ArtistMemberDomain.State]>)
-        
+
         case didPressMyButton
         case artistSelector(CategorySelectorCore.Action)
         case artistMember(id: ArtistMemberDomain.State.ID, action: ArtistMemberDomain.Action)
@@ -43,16 +43,18 @@ struct FotoDomain {
                 return .send(.fetchAllArtistMembers)
 
             case .fetchAllArtistMembers:
-                state.isLoading = true
                 state.errorMessage = nil
-                return .run { send in
-                    await send(.fetchAllArtistMembersResponse(TaskResult {
-                        try await fotoClient.fetchMembers()
-                    }))
-                }
-                
+                return .concatenate(
+                    .run { _ in await loadingClient.show() },
+                    .run { send in
+                        try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+                        await send(.fetchAllArtistMembersResponse(TaskResult {
+                            try await fotoClient.fetchMembers()
+                        }))
+                    }
+                )
+
             case let .fetchAllArtistMembersResponse(.success(members)):
-                state.isLoading = false
                 state.allArtistMembers = members
 
                 let uniqueGroups = Set(members.map { $0.group })
@@ -70,17 +72,17 @@ struct FotoDomain {
                     )
                 }
 
-                return .none
+                return .run { _ in await loadingClient.hide() }
 
             case let .fetchAllArtistMembersResponse(.failure(error)):
-                state.isLoading = false
                 state.errorMessage = "Failed to fetch artist members: \(error)"
-                return .none
+
+                return .run { _ in await loadingClient.hide() }
 
             case .didPressMyButton:
                 AppLog.log("My button tapped")
                 return .none
-                
+
             case .artistSelector(.categoryButton(_, .didSelectCategoryButton)):
                 guard let selectedCategory = state.artistSelector.categories.first(where: { $0.isSelected }) else {
                     return .none

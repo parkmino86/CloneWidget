@@ -5,8 +5,8 @@
 //  Created by minoh.park on 8/15/24.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct FotoView: View {
     let store: StoreOf<FotoDomain>
@@ -15,10 +15,7 @@ struct FotoView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             NavigationStack {
                 ScrollView {
-                    if viewStore.isLoading {
-                        ProgressView("Loading...")
-                            .padding(.top, 50)
-                    } else if let errorMessage = viewStore.errorMessage {
+                    if let errorMessage = viewStore.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
                             .padding(.top, 50)
@@ -82,7 +79,7 @@ struct FotoView: View {
                                     )
                                 )
                             }
-                            
+
                             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
                                 ForEachStore(
                                     store.scope(
