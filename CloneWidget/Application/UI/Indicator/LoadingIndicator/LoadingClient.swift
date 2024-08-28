@@ -25,12 +25,12 @@ private enum LoadingClientKey: DependencyKey {
     static let liveValue = LoadingClient(
         show: {
             await MainActor.run {
-                LoadingIndicator.shared.showLoading()
+                LoadingStateManager.shared.showLoading()
             }
         },
         hide: {
             await MainActor.run {
-                LoadingIndicator.shared.hideLoading()
+                LoadingStateManager.shared.hideLoading()
             }
         }
     )

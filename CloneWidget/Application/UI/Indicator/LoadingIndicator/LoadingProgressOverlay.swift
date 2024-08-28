@@ -1,17 +1,18 @@
 //
-//  LoadingOverlay.swift
+//  LoadingProgressOverlay.swift
 //  CloneWidget
 //
 //  Created by minoh.park on 8/27/24.
 //
 
+import Combine
 import SwiftUI
 
-struct LoadingOverlay: View {
-    @ObservedObject private var loadingIndicator = LoadingIndicator.shared
+struct LoadingProgressOverlay: View {
+    @ObservedObject private var state = LoadingStateManager.shared
 
     var body: some View {
-        if loadingIndicator.isLoading {
+        if state.isLoading {
             ZStack {
                 Color.black.opacity(0.4)
                     .ignoresSafeArea()

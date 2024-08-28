@@ -1,15 +1,14 @@
 //
-//  LoadingIndicator.swift
+//  LoadingStateManager.swift
 //  CloneWidget
 //
-//  Created by minoh.park on 8/27/24.
+//  Created by minoh.park on 8/28/24.
 //
 
-import Combine
-import SwiftUI
+import Foundation
 
-final class LoadingIndicator: ObservableObject {
-    static let shared = LoadingIndicator()
+final class LoadingStateManager: ObservableObject {
+    static let shared = LoadingStateManager()
 
     @Published private(set) var isLoading: Bool = false
     private var loadingCount: Int = 0

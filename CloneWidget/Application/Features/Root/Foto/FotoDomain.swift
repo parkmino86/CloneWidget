@@ -14,8 +14,6 @@ struct FotoDomain {
     @Dependency(\.loadingClient) var loadingClient
 
     struct State: Equatable {
-        var errorMessage: String?
-
         var allArtistMembers: [ArtistMemberDomain.State] = []
         var artistSelector: CategorySelectorCore.State = .init(categories: IdentifiedArrayOf())
         var artistMembers: IdentifiedArrayOf<ArtistMemberDomain.State> = []
@@ -43,16 +41,21 @@ struct FotoDomain {
                 return .send(.fetchAllArtistMembers)
 
             case .fetchAllArtistMembers:
-                state.errorMessage = nil
-                return .concatenate(
-                    .run { _ in await loadingClient.show() },
-                    .run { send in
+                return .run { send in
+                    await loadingClient.show()
+
+                    do {
                         try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
                         await send(.fetchAllArtistMembersResponse(TaskResult {
                             try await fotoClient.fetchMembers()
                         }))
+                        
+                    } catch {
+                        await send(.fetchAllArtistMembersResponse(.failure(error)))
                     }
-                )
+
+                    await loadingClient.hide()
+                }
 
             case let .fetchAllArtistMembersResponse(.success(members)):
                 state.allArtistMembers = members
@@ -72,12 +75,14 @@ struct FotoDomain {
                     )
                 }
 
-                return .run { _ in await loadingClient.hide() }
+                return .run { _ in
+                    await loadingClient.hide()
+                }
 
             case let .fetchAllArtistMembersResponse(.failure(error)):
-                state.errorMessage = "Failed to fetch artist members: \(error)"
-
-                return .run { _ in await loadingClient.hide() }
+                return .run { _ in
+                    await loadingClient.hide()
+                }
 
             case .didPressMyButton:
                 AppLog.log("My button tapped")
