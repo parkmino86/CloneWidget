@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FotoView: View {
     let store: StoreOf<FotoDomain>
-
+    
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             NavigationStack {
@@ -61,29 +61,37 @@ struct FotoView: View {
                         }
                         .padding(.horizontal, 16)
 
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("추천 아티스트")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .padding(.top, 16)
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3),
+                                  spacing: 16,
+                                  pinnedViews: [.sectionHeaders]) {
+                            Section(
+                                content: {
+                                    ForEachStore(
+                                        store.scope(
+                                            state: \.artistMembers,
+                                            action: \.artistMember
+                                        )
+                                    ) { artistMemberStore in
+                                        ArtistMemberView(store: artistMemberStore)
+                                    }
+                                },
+                                header: {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text("추천 아티스트")
+                                            .font(.title3)
+                                            .fontWeight(.bold)
+                                            .padding(.top, 16)
 
-                            CategorySelectorView(
-                                store: store.scope(
-                                    state: \.artistSelector,
-                                    action: \.artistSelector
-                                )
+                                        CategorySelectorView(
+                                            store: store.scope(
+                                                state: \.artistSelector,
+                                                action: \.artistSelector
+                                            )
+                                        )
+                                    }
+                                    .background(.background)
+                                }
                             )
-                        }
-
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
-                            ForEachStore(
-                                store.scope(
-                                    state: \.artistMembers,
-                                    action: \.artistMember
-                                )
-                            ) { artistMemberStore in
-                                ArtistMemberView(store: artistMemberStore)
-                            }
                         }
                     }
                     .padding(.horizontal, 16)
