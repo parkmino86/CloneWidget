@@ -58,7 +58,8 @@ struct RootView: View {
                     }
                     .tag(RootDomain.Tab.myPage)
                 }
-                LoadingProgressOverlay()
+                
+                LoadingProgressView()
             }
         }
     }

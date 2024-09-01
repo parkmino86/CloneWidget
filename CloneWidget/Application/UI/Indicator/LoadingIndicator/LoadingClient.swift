@@ -24,14 +24,10 @@ extension DependencyValues {
 private enum LoadingClientKey: DependencyKey {
     static let liveValue = LoadingClient(
         show: {
-            await MainActor.run {
-                LoadingStateManager.shared.showLoading()
-            }
+            await LoadingStateManager.shared.showLoading()
         },
         hide: {
-            await MainActor.run {
-                LoadingStateManager.shared.hideLoading()
-            }
+            await LoadingStateManager.shared.hideLoading()
         }
     )
 }

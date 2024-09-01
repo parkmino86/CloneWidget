@@ -21,11 +21,10 @@
 		E31F47752C6E1B470053A74D /* ExplorerDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47742C6E1B470053A74D /* ExplorerDomain.swift */; };
 		E31F47772C6E1B4D0053A74D /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47762C6E1B4D0053A74D /* MyPageView.swift */; };
 		E31F47792C6E1B530053A74D /* MyPageDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47782C6E1B530053A74D /* MyPageDomain.swift */; };
+		E33E23DE2C841E4100C95173 /* LoadingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33E23DD2C841E4100C95173 /* LoadingProgressView.swift */; };
 		E340E6C42C78DA3B00CD901F /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E340E6C32C78DA3B00CD901F /* CategoryButton.swift */; };
 		E340E6C62C78DA4B00CD901F /* CategorySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */; };
-		E36356CB2C7CD64D00019FD0 /* LoadingProgressOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36356CA2C7CD64D00019FD0 /* LoadingProgressOverlay.swift */; };
 		E36356D32C7CD84D00019FD0 /* LoadingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36356D22C7CD84D00019FD0 /* LoadingClient.swift */; };
-		E36356E62C7F6C0600019FD0 /* LoadingStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36356E52C7F6C0600019FD0 /* LoadingStateManager.swift */; };
 		E37E91982C79726E000CB881 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91972C79726E000CB881 /* AppLog.swift */; };
 		E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91992C7972A9000CB881 /* Date+Extensions.swift */; };
 		E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A22C79845F000CB881 /* ArtistMemberView.swift */; };
@@ -48,11 +47,10 @@
 		E31F47742C6E1B470053A74D /* ExplorerDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerDomain.swift; sourceTree = "<group>"; };
 		E31F47762C6E1B4D0053A74D /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		E31F47782C6E1B530053A74D /* MyPageDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDomain.swift; sourceTree = "<group>"; };
+		E33E23DD2C841E4100C95173 /* LoadingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProgressView.swift; sourceTree = "<group>"; };
 		E340E6C32C78DA3B00CD901F /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectorView.swift; sourceTree = "<group>"; };
-		E36356CA2C7CD64D00019FD0 /* LoadingProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProgressOverlay.swift; sourceTree = "<group>"; };
 		E36356D22C7CD84D00019FD0 /* LoadingClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingClient.swift; sourceTree = "<group>"; };
-		E36356E52C7F6C0600019FD0 /* LoadingStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateManager.swift; sourceTree = "<group>"; };
 		E37E91972C79726E000CB881 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		E37E91992C7972A9000CB881 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E37E91A22C79845F000CB881 /* ArtistMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMemberView.swift; sourceTree = "<group>"; };
@@ -391,8 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				E36356D22C7CD84D00019FD0 /* LoadingClient.swift */,
-				E36356CA2C7CD64D00019FD0 /* LoadingProgressOverlay.swift */,
-				E36356E52C7F6C0600019FD0 /* LoadingStateManager.swift */,
+				E33E23DD2C841E4100C95173 /* LoadingProgressView.swift */,
 			);
 			path = LoadingIndicator;
 			sourceTree = "<group>";
@@ -492,12 +489,11 @@
 				E31F476B2C6E1B260053A74D /* TodayView.swift in Sources */,
 				E31F47512C6E10A90053A74D /* CloneWidgetApp.swift in Sources */,
 				E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */,
-				E36356CB2C7CD64D00019FD0 /* LoadingProgressOverlay.swift in Sources */,
 				E31F476F2C6E1B320053A74D /* FotoView.swift in Sources */,
-				E36356E62C7F6C0600019FD0 /* LoadingStateManager.swift in Sources */,
 				E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */,
 				E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */,
 				E31F47772C6E1B4D0053A74D /* MyPageView.swift in Sources */,
+				E33E23DE2C841E4100C95173 /* LoadingProgressView.swift in Sources */,
 				E340E6C42C78DA3B00CD901F /* CategoryButton.swift in Sources */,
 				E37E91982C79726E000CB881 /* AppLog.swift in Sources */,
 				E31F47752C6E1B470053A74D /* ExplorerDomain.swift in Sources */,

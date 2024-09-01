@@ -14,17 +14,17 @@ struct FotoDomain {
     @Dependency(\.loadingClient) var loadingClient
 
     struct State: Equatable {
-        var allArtistMembers: [ArtistMemberDomain.State] = []
         var artistSelector: CategorySelectorCore.State = .init(categories: IdentifiedArrayOf())
         var artistMembers: IdentifiedArrayOf<ArtistMemberDomain.State> = []
-
-        var selectedArtistGroup: String?
+        var selectedArtist: String?
     }
 
     enum Action: Equatable {
         case onAppear
-        case fetchAllArtistMembers
-        case fetchAllArtistMembersResponse(TaskResult<[ArtistMemberDomain.State]>)
+        case fetchArtists
+        case fetchArtistsResponse(TaskResult<[CategoryButtonCore.State]>)
+        case fetchArtistMembers(String)
+        case fetchArtistMembersResponse(TaskResult<[ArtistMemberDomain.State]>)
 
         case didPressMyButton
         case artistSelector(CategorySelectorCore.Action)
@@ -38,51 +38,58 @@ struct FotoDomain {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                return .send(.fetchAllArtistMembers)
+                if state.artistSelector.categories.isEmpty {
+                    return .send(.fetchArtists)
+                }
+                return .none
 
-            case .fetchAllArtistMembers:
+            case .fetchArtists:
                 return .run { send in
                     await loadingClient.show()
-
                     do {
-                        try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
-                        await send(.fetchAllArtistMembersResponse(TaskResult {
-                            try await fotoClient.fetchMembers()
-                        }))
-                        
+                        let artists = try await fotoClient.fetchArtists()
+                        await send(.fetchArtistsResponse(.success(artists)))
                     } catch {
-                        await send(.fetchAllArtistMembersResponse(.failure(error)))
+                        await send(.fetchArtistsResponse(.failure(error)))
                     }
-
                     await loadingClient.hide()
                 }
 
-            case let .fetchAllArtistMembersResponse(.success(members)):
-                state.allArtistMembers = members
-
-                let uniqueGroups = Set(members.map { $0.group })
-                let categories = IdentifiedArray(
-                    uniqueElements: uniqueGroups.map { group in
-                        CategoryButtonCore.State(text: group, isSelected: group == uniqueGroups.first)
-                    }
-                )
-                state.artistSelector = CategorySelectorCore.State(categories: categories)
-
-                if let firstGroup = uniqueGroups.first {
-                    state.selectedArtistGroup = firstGroup
-                    state.artistMembers = IdentifiedArray(
-                        uniqueElements: members.filter { $0.group == firstGroup }
+            case let .fetchArtistsResponse(result):
+                switch result {
+                case .success(let artists):
+                    state.artistSelector = CategorySelectorCore.State(
+                        categories: IdentifiedArray(uniqueElements: artists)
                     )
+                    if let firstArtist = artists.first?.text {
+                        state.selectedArtist = firstArtist
+                        return .send(.fetchArtistMembers(firstArtist))
+                    }
+                case .failure:
+                    return .none
                 }
+                return .none
 
-                return .run { _ in
+            case let .fetchArtistMembers(artist):
+                return .run { send in
+                    await loadingClient.show()
+                    do {
+                        let members = try await fotoClient.fetchMembers(artist)
+                        await send(.fetchArtistMembersResponse(.success(members)))
+                    } catch {
+                        await send(.fetchArtistMembersResponse(.failure(error)))
+                    }
                     await loadingClient.hide()
                 }
 
-            case let .fetchAllArtistMembersResponse(.failure(error)):
-                return .run { _ in
-                    await loadingClient.hide()
+            case let .fetchArtistMembersResponse(result):
+                switch result {
+                case .success(let members):
+                    state.artistMembers = IdentifiedArray(uniqueElements: members)
+                case .failure:
+                    return .none
                 }
+                return .none
 
             case .didPressMyButton:
                 AppLog.log("My button tapped")
@@ -92,11 +99,8 @@ struct FotoDomain {
                 guard let selectedCategory = state.artistSelector.categories.first(where: { $0.isSelected }) else {
                     return .none
                 }
-                state.selectedArtistGroup = selectedCategory.text
-                state.artistMembers = IdentifiedArray(uniqueElements: state.allArtistMembers.filter { member in
-                    member.group == selectedCategory.text
-                })
-                return .none
+                state.selectedArtist = selectedCategory.text
+                return .send(.fetchArtistMembers(selectedCategory.text))
 
             case let .artistMember(id, action):
                 AppLog.log("Artist Member Action - ID: \(id), Action: \(action)")

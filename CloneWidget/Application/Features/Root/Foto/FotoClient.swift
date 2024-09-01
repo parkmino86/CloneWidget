@@ -10,15 +10,19 @@ extension DependencyValues {
 
 @DependencyClient
 struct FotoClient {
-    var fetchMembers: @Sendable () async throws -> [ArtistMemberDomain.State]
+    var fetchMembers: @Sendable (String) async throws -> [ArtistMemberDomain.State]
+    var fetchArtists: @Sendable () async throws -> [CategoryButtonCore.State]
 }
 
 extension FotoClient: DependencyKey {
     static let liveValue: FotoClient = {
         let service = FotoService()
         return Self(
-            fetchMembers: {
-                try await service.fetchMembers()
+            fetchMembers: { group in
+                return try await service.fetchMembers(for: group)
+            },
+            fetchArtists: {
+                return try await service.fetchArtists()
             }
         )
     }()
@@ -26,8 +30,11 @@ extension FotoClient: DependencyKey {
     static let previewValue: FotoClient = {
         let service = FotoService()
         return Self(
-            fetchMembers: {
-                try await service.fetchMembers()
+            fetchMembers: { group in
+                try await service.fetchMembers(for: group)
+            },
+            fetchArtists: {
+                try await service.fetchArtists()
             }
         )
     }()
@@ -54,9 +61,19 @@ extension FotoClient: DependencyKey {
             ArtistMemberDomain.State(name: "Rosé", group: "BLACKPINK"),
             ArtistMemberDomain.State(name: "Lisa", group: "BLACKPINK"),
         ]
+        
+        private var storedArtists: [CategoryButtonCore.State] = [
+            CategoryButtonCore.State(text: "ATEEZ", isSelected: true),
+            CategoryButtonCore.State(text: "BTS", isSelected: false),
+            CategoryButtonCore.State(text: "BLACKPINK", isSelected: false)
+        ]
 
-        func fetchMembers() async throws -> [ArtistMemberDomain.State] {
-            return storedMembers
+        func fetchMembers(for group: String) async throws -> [ArtistMemberDomain.State] {
+            return storedMembers.filter { $0.group == group }
+        }
+        
+        func fetchArtists() async throws -> [CategoryButtonCore.State] {
+            return storedArtists
         }
     }
 }
