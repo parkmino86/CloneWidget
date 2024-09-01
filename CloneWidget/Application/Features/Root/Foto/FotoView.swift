@@ -60,38 +60,46 @@ struct FotoView: View {
                                 .font(.body)
                         }
                         .padding(.horizontal, 16)
-
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3),
-                                  spacing: 16,
-                                  pinnedViews: [.sectionHeaders]) {
+                        
+                        LazyVStack(alignment: .leading,
+                                   spacing: 8,
+                                   pinnedViews: [.sectionHeaders]) {
+                            
                             Section(
                                 content: {
-                                    ForEachStore(
-                                        store.scope(
-                                            state: \.artistMembers,
-                                            action: \.artistMember
+                                    CategorySelectorView(
+                                        store: store.scope(
+                                            state: \.artistSelector,
+                                            action: \.artistSelector
                                         )
-                                    ) { artistMemberStore in
-                                        ArtistMemberView(store: artistMemberStore)
+                                    )
+                                    
+                                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3),
+                                              spacing: 16) {
+                                        ForEachStore(
+                                            store.scope(
+                                                state: \.artistMembers,
+                                                action: \.artistMember
+                                            )
+                                        ) { artistMemberStore in
+                                            ArtistMemberView(store: artistMemberStore)
+                                        }
                                     }
                                 },
+                                
                                 header: {
                                     VStack(alignment: .leading, spacing: 8) {
                                         Text("추천 아티스트")
                                             .font(.title3)
                                             .fontWeight(.bold)
                                             .padding(.top, 16)
-
-                                        CategorySelectorView(
-                                            store: store.scope(
-                                                state: \.artistSelector,
-                                                action: \.artistSelector
-                                            )
-                                        )
+                                            .padding(.bottom, 8)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                     .background(.background)
                                 }
                             )
+                            
                         }
                     }
                     .padding(.horizontal, 16)
