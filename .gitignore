@@ -1,0 +1,71 @@
+# Xcode
+#
+# Xcode 자체에서 생성하는 파일 및 폴더를 무시합니다.
+DerivedData/
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+!default.xcshareddata
+!default.xcscheme
+*.moved-aside
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.xcodeproj/project.xcworkspace/xcuserdata
+*.xcodeproj/xcuserdata
+*.xcodeproj/xcshareddata
+
+# Swift Package Manager
+#
+# SPM에서 생성하는 파일을 무시합니다.
+.build/
+Package.resolved
+
+# CocoaPods
+#
+# CocoaPods에 의해 생성되는 파일을 무시합니다.
+Pods/
+Podfile.lock
+
+# Carthage
+#
+# Carthage 빌드 제품을 무시합니다.
+Carthage/Build/
+
+# Fastlane
+#
+# Fastlane에 의해 생성된 파일을 무시합니다.
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+
+# Archives
+#
+# .xcarchive 파일을 무시합니다.
+*.xcarchive
+
+# 기타
+#
+# DS_Store 및 Thumbnails는 macOS에서 자동 생성되는 파일들입니다.
+.DS_Store
+.Trashes
+Thumbs.db
+
+# 사용자 정의 및 임시 파일
+#
+# 특정 개발 환경에 따른 개인 설정 및 임시 파일을 무시합니다.
+*.swp
+*.lock
+*.tmp
+*.log
+*.bak
+*.orig
+*.swp
+
+# Xcode의 사용자 설정 파일을 무시합니다.
+*.xcuserdatad
