@@ -11,7 +11,6 @@ import Foundation
 @Reducer
 struct FotoDomain {
     @Dependency(\.fotoClient) var fotoClient
-    @Dependency(\.loadingClient) var loadingClient
 
     struct State: Equatable {
         var artistSelector: CategorySelectorCore.State = .init(categories: IdentifiedArrayOf())
@@ -29,6 +28,9 @@ struct FotoDomain {
         case didPressMyButton
         case artistSelector(CategorySelectorCore.Action)
         case artistMember(id: ArtistMemberDomain.State.ID, action: ArtistMemberDomain.Action)
+        
+        case showLoading
+        case hideLoading
     }
 
     var body: some Reducer<State, Action> {
@@ -45,14 +47,15 @@ struct FotoDomain {
 
             case .fetchArtists:
                 return .run { send in
-                    await loadingClient.show()
                     do {
                         let artists = try await fotoClient.fetchArtists()
+                        await send(.showLoading)
+                        try await Task.sleep(nanoseconds: 1_000_000_000)
                         await send(.fetchArtistsResponse(.success(artists)))
+                        await send(.hideLoading)
                     } catch {
                         await send(.fetchArtistsResponse(.failure(error)))
                     }
-                    await loadingClient.hide()
                 }
 
             case let .fetchArtistsResponse(result):
@@ -72,14 +75,12 @@ struct FotoDomain {
 
             case let .fetchArtistMembers(artist):
                 return .run { send in
-                    await loadingClient.show()
                     do {
                         let members = try await fotoClient.fetchMembers(artist)
                         await send(.fetchArtistMembersResponse(.success(members)))
                     } catch {
                         await send(.fetchArtistMembersResponse(.failure(error)))
                     }
-                    await loadingClient.hide()
                 }
 
             case let .fetchArtistMembersResponse(result):
@@ -104,6 +105,9 @@ struct FotoDomain {
 
             case let .artistMember(id, action):
                 AppLog.log("Artist Member Action - ID: \(id), Action: \(action)")
+                return .none
+                
+            default:
                 return .none
             }
         }

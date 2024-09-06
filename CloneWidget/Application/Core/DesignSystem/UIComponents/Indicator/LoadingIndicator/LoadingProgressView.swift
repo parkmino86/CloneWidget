@@ -8,51 +8,68 @@
 import ComposableArchitecture
 import SwiftUI
 
-@MainActor
-final class LoadingStateManager: ObservableObject {
-    static let shared = LoadingStateManager()
-
-    @Published private(set) var isLoading: Bool = false
-    private var loadingCount: Int = 0
-
-    private init() {}
-
-    func showLoading() {
-        loadingCount += 1
-        updateLoadingState()
-    }
-
-    func hideLoading() {
-        loadingCount = max(loadingCount - 1, 0)
-        updateLoadingState()
-    }
-
-    private func updateLoadingState() {
-        isLoading = loadingCount > 0
-    }
-}
+// MARK: - View
 
 struct LoadingProgressView: View {
-    @ObservedObject private var state = LoadingStateManager.shared
+    let store: StoreOf<LoadingProgressCore>
 
     var body: some View {
-        if state.isLoading {
-            ZStack {
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            if viewStore.isLoading {
+                ZStack {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
 
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    .scaleEffect(1.5)
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        .scaleEffect(1.5)
+                }
+                .transition(.opacity.animation(.easeInOut(duration: 0.2)))
             }
-            .transition(.opacity.animation(.easeInOut(duration: 0.2)))
         }
     }
 }
+
+// MARK: - Reducer
+
+@Reducer
+struct LoadingProgressCore {
+    struct State: Equatable {
+        var isLoading: Bool = false
+        var loadingCount: Int = 0
+    }
+
+    enum Action: Equatable {
+        case showLoading
+        case hideLoading
+    }
+
+    var body: some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case .showLoading:
+                state.loadingCount += 1
+                state.isLoading = state.loadingCount > 0
+                return .none
+
+            case .hideLoading:
+                state.loadingCount = max(state.loadingCount - 1, 0)
+                state.isLoading = state.loadingCount > 0
+                return .none
+            }
+        }
+    }
+}
+
+// MARK: - Preview
 
 struct LoadingProgressView_Previews: PreviewProvider {
     static var previews: some View {
-            LoadingStateManager.shared.showLoading()
-            return LoadingProgressView().previewDisplayName("Loading State")
-        }
+        LoadingProgressView(
+            store: Store(
+                initialState: LoadingProgressCore.State(isLoading: true),
+                reducer: { LoadingProgressCore() }
+            )
+        )
+    }
 }
