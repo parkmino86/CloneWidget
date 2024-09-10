@@ -9,6 +9,7 @@ import ComposableArchitecture
 
 @Reducer
 struct MyPageDomain {
+    @ObservableState
     struct State: Equatable {}
 
     enum Action: Equatable {}

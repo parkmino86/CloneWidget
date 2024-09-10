@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TodayView: View {
-    let store: StoreOf<TodayDomain>
+    var store: StoreOf<TodayDomain>
 
     var body: some View {
         Text("Today View")

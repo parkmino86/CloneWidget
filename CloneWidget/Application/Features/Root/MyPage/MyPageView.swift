@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct MyPageView: View {
-    let store: StoreOf<MyPageDomain>
+    var store: StoreOf<MyPageDomain>
 
     var body: some View {
         Text("My Page View")

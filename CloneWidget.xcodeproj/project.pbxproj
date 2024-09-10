@@ -29,6 +29,9 @@
 		E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A22C79845F000CB881 /* ArtistMemberView.swift */; };
 		E37E91A52C798469000CB881 /* ArtistMemberDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */; };
 		E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FADC22C79BADB00290FE1 /* FotoClient.swift */; };
+		E3CA39EE2C8F331600A51E6B /* TicketDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39ED2C8F331600A51E6B /* TicketDomain.swift */; };
+		E3CA39F02C8F332E00A51E6B /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39EF2C8F332E00A51E6B /* TicketView.swift */; };
+		E3CA39F62C90A21700A51E6B /* CustomBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		E37E91A22C79845F000CB881 /* ArtistMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMemberView.swift; sourceTree = "<group>"; };
 		E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMemberDomain.swift; sourceTree = "<group>"; };
 		E37FADC22C79BADB00290FE1 /* FotoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoClient.swift; sourceTree = "<group>"; };
+		E3CA39ED2C8F331600A51E6B /* TicketDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDomain.swift; sourceTree = "<group>"; };
+		E3CA39EF2C8F332E00A51E6B /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
+		E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,7 @@
 		E30FAB712C78C4D1009C0807 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E3CA39F42C90A20B00A51E6B /* Buttons */,
 				E340E6C72C78DA4E00CD901F /* CategorySelectorView */,
 				E30FAB742C78C4E7009C0807 /* Indicator */,
 				E30FAB6E2C78C4BE009C0807 /* Toast */,
@@ -341,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				E37E91A12C798436000CB881 /* Artist */,
+				E3CA39EC2C8F32FD00A51E6B /* Ticket */,
 				E37FADC22C79BADB00290FE1 /* FotoClient.swift */,
 				E31F476E2C6E1B320053A74D /* FotoView.swift */,
 				E31F47702C6E1B380053A74D /* FotoDomain.swift */,
@@ -390,6 +398,23 @@
 				E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */,
 			);
 			path = Artist;
+			sourceTree = "<group>";
+		};
+		E3CA39EC2C8F32FD00A51E6B /* Ticket */ = {
+			isa = PBXGroup;
+			children = (
+				E3CA39EF2C8F332E00A51E6B /* TicketView.swift */,
+				E3CA39ED2C8F331600A51E6B /* TicketDomain.swift */,
+			);
+			path = Ticket;
+			sourceTree = "<group>";
+		};
+		E3CA39F42C90A20B00A51E6B /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		E3D7BAEC2C84BD98009C1F83 /* Services */ = {
@@ -479,6 +504,7 @@
 				E31F47792C6E1B530053A74D /* MyPageDomain.swift in Sources */,
 				E31F47642C6E169D0053A74D /* RootDomain.swift in Sources */,
 				E31F47732C6E1B400053A74D /* ExplorerView.swift in Sources */,
+				E3CA39F02C8F332E00A51E6B /* TicketView.swift in Sources */,
 				E31F47532C6E10A90053A74D /* RootView.swift in Sources */,
 				E37E91A52C798469000CB881 /* ArtistMemberDomain.swift in Sources */,
 				E31F47712C6E1B380053A74D /* FotoDomain.swift in Sources */,
@@ -486,12 +512,14 @@
 				E31F47512C6E10A90053A74D /* CloneWidgetApp.swift in Sources */,
 				E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */,
 				E31F476F2C6E1B320053A74D /* FotoView.swift in Sources */,
+				E3CA39F62C90A21700A51E6B /* CustomBackButton.swift in Sources */,
 				E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */,
 				E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */,
 				E31F47772C6E1B4D0053A74D /* MyPageView.swift in Sources */,
 				E33E23DE2C841E4100C95173 /* LoadingProgressView.swift in Sources */,
 				E340E6C42C78DA3B00CD901F /* CategoryButton.swift in Sources */,
 				E37E91982C79726E000CB881 /* AppLog.swift in Sources */,
+				E3CA39EE2C8F331600A51E6B /* TicketDomain.swift in Sources */,
 				E31F47752C6E1B470053A74D /* ExplorerDomain.swift in Sources */,
 				E340E6C62C78DA4B00CD901F /* CategorySelectorView.swift in Sources */,
 				E31F476D2C6E1B2C0053A74D /* TodayDomain.swift in Sources */,

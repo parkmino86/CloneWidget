@@ -9,27 +9,25 @@ import ComposableArchitecture
 import SwiftUI
 
 struct ArtistMemberView: View {
-    let store: StoreOf<ArtistMemberDomain>
+    var store: StoreOf<ArtistMemberDomain>
 
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            VStack {
-                Image(systemName: "person.crop.square")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 88, height: 88)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+        VStack {
+            Image(systemName: "person.crop.square")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 88, height: 88)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
 
-                Text(viewStore.name)
-                    .font(.footnote)
-                    .foregroundColor(.primary)
-            }
-            .padding()
-            .background(Color(.systemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .onTapGesture {
-                viewStore.send(.profileSelected)
-            }
+            Text(store.name)
+                .font(.footnote)
+                .foregroundColor(.primary)
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .onTapGesture {
+            store.send(.profileSelected)
         }
     }
 }

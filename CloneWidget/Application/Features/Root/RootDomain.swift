@@ -9,13 +9,14 @@ import ComposableArchitecture
 
 @Reducer
 struct RootDomain {
-    enum Tab {
+    enum Tab: Equatable, Hashable {
         case today
         case foto
         case explorer
         case myPage
     }
 
+    @ObservableState
     struct State: Equatable {
         var selectedTab = Tab.explorer
         
@@ -38,7 +39,7 @@ struct RootDomain {
         case global(LoadingProgressCore.Action)
     }
 
-    var body: some Reducer<State, Action> {
+    var body: some ReducerOf<Self> {
         Scope(state: \.foto, action: \.foto) {
             FotoDomain()
         }

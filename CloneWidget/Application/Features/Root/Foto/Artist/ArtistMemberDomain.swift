@@ -10,6 +10,7 @@ import Foundation
 
 @Reducer
 struct ArtistMemberDomain {
+    @ObservableState
     struct State: Identifiable, Equatable {
         let id: UUID
         var name: String

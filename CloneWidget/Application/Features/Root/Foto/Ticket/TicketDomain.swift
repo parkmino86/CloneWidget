@@ -1,14 +1,14 @@
 //
-//  TodayDomain.swift
+//  TicketDomain.swift
 //  CloneWidget
 //
-//  Created by minoh.park on 8/15/24.
+//  Created by minoh.park on 9/9/24.
 //
 
 import ComposableArchitecture
 
 @Reducer
-struct TodayDomain {
+struct TicketDomain {    
     @ObservableState
     struct State: Equatable {}
 

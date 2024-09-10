@@ -12,13 +12,32 @@ import Foundation
 struct FotoDomain {
     @Dependency(\.fotoClient) var fotoClient
 
+    @ObservableState
     struct State: Equatable {
+        var path = StackState<Path.State>()
         var artistSelector: CategorySelectorCore.State = .init(categories: IdentifiedArrayOf())
         var artistMembers: IdentifiedArrayOf<ArtistMemberDomain.State> = []
         var selectedArtist: String?
     }
+    
+    @Reducer
+    struct Path: Equatable {
+        @ObservableState
+        enum State: Equatable {
+            case ticket(TicketDomain.State)
+        }
+        
+        enum Action: Equatable {
+            case ticket(TicketDomain.Action)
+        }
+        
+        var body: some ReducerOf<Self> {
+            Scope(state: \.ticket, action: \.ticket) { TicketDomain() }
+        }
+    }
 
     enum Action: Equatable {
+        case path(StackAction<Path.State, Path.Action>)
         case onAppear
         case fetchArtists
         case fetchArtistsResponse(TaskResult<[CategoryButtonCore.State]>)
@@ -94,6 +113,7 @@ struct FotoDomain {
 
             case .didPressMyButton:
                 AppLog.log("My button tapped")
+                state.path.append(.ticket(TicketDomain.State()))
                 return .none
 
             case .artistSelector(.categoryButton(_, .didSelectCategoryButton)):
@@ -114,5 +134,6 @@ struct FotoDomain {
         .forEach(\.artistMembers, action: /Action.artistMember(id:action:)) {
             ArtistMemberDomain()
         }
+        .forEach(\.path, action: \.path) { Path() }
     }
 }
