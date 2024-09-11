@@ -26,12 +26,14 @@
 		E340E6C62C78DA4B00CD901F /* CategorySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */; };
 		E37E91982C79726E000CB881 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91972C79726E000CB881 /* AppLog.swift */; };
 		E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91992C7972A9000CB881 /* Date+Extensions.swift */; };
-		E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A22C79845F000CB881 /* ArtistMemberView.swift */; };
-		E37E91A52C798469000CB881 /* ArtistMemberDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */; };
+		E37E91A32C79845F000CB881 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A22C79845F000CB881 /* ProfileView.swift */; };
+		E37E91A52C798469000CB881 /* ProfileCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A42C798469000CB881 /* ProfileCore.swift */; };
 		E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FADC22C79BADB00290FE1 /* FotoClient.swift */; };
 		E3CA39EE2C8F331600A51E6B /* TicketDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39ED2C8F331600A51E6B /* TicketDomain.swift */; };
 		E3CA39F02C8F332E00A51E6B /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39EF2C8F332E00A51E6B /* TicketView.swift */; };
 		E3CA39F62C90A21700A51E6B /* CustomBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */; };
+		E3CA39FB2C91E35600A51E6B /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39FA2C91E35600A51E6B /* ArtistView.swift */; };
+		E3CA39FE2C91EA2500A51E6B /* ArtistDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39FD2C91EA2500A51E6B /* ArtistDomain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,12 +56,14 @@
 		E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectorView.swift; sourceTree = "<group>"; };
 		E37E91972C79726E000CB881 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		E37E91992C7972A9000CB881 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		E37E91A22C79845F000CB881 /* ArtistMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMemberView.swift; sourceTree = "<group>"; };
-		E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistMemberDomain.swift; sourceTree = "<group>"; };
+		E37E91A22C79845F000CB881 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E37E91A42C798469000CB881 /* ProfileCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCore.swift; sourceTree = "<group>"; };
 		E37FADC22C79BADB00290FE1 /* FotoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoClient.swift; sourceTree = "<group>"; };
 		E3CA39ED2C8F331600A51E6B /* TicketDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDomain.swift; sourceTree = "<group>"; };
 		E3CA39EF2C8F332E00A51E6B /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButton.swift; sourceTree = "<group>"; };
+		E3CA39FA2C91E35600A51E6B /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
+		E3CA39FD2C91EA2500A51E6B /* ArtistDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDomain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 		E30FAB712C78C4D1009C0807 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E3CA39FC2C91E94C00A51E6B /* Profiles */,
 				E3CA39F42C90A20B00A51E6B /* Buttons */,
 				E340E6C72C78DA4E00CD901F /* CategorySelectorView */,
 				E30FAB742C78C4E7009C0807 /* Indicator */,
@@ -347,11 +352,11 @@
 		E31F47672C6E1B070053A74D /* Foto */ = {
 			isa = PBXGroup;
 			children = (
-				E37E91A12C798436000CB881 /* Artist */,
+				E3CA39F72C91E33200A51E6B /* Artist */,
 				E3CA39EC2C8F32FD00A51E6B /* Ticket */,
-				E37FADC22C79BADB00290FE1 /* FotoClient.swift */,
 				E31F476E2C6E1B320053A74D /* FotoView.swift */,
 				E31F47702C6E1B380053A74D /* FotoDomain.swift */,
+				E37FADC22C79BADB00290FE1 /* FotoClient.swift */,
 			);
 			path = Foto;
 			sourceTree = "<group>";
@@ -391,15 +396,6 @@
 			path = LoadingIndicator;
 			sourceTree = "<group>";
 		};
-		E37E91A12C798436000CB881 /* Artist */ = {
-			isa = PBXGroup;
-			children = (
-				E37E91A22C79845F000CB881 /* ArtistMemberView.swift */,
-				E37E91A42C798469000CB881 /* ArtistMemberDomain.swift */,
-			);
-			path = Artist;
-			sourceTree = "<group>";
-		};
 		E3CA39EC2C8F32FD00A51E6B /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +411,24 @@
 				E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		E3CA39F72C91E33200A51E6B /* Artist */ = {
+			isa = PBXGroup;
+			children = (
+				E3CA39FA2C91E35600A51E6B /* ArtistView.swift */,
+				E3CA39FD2C91EA2500A51E6B /* ArtistDomain.swift */,
+			);
+			path = Artist;
+			sourceTree = "<group>";
+		};
+		E3CA39FC2C91E94C00A51E6B /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				E37E91A22C79845F000CB881 /* ProfileView.swift */,
+				E37E91A42C798469000CB881 /* ProfileCore.swift */,
+			);
+			path = Profiles;
 			sourceTree = "<group>";
 		};
 		E3D7BAEC2C84BD98009C1F83 /* Services */ = {
@@ -506,14 +520,16 @@
 				E31F47732C6E1B400053A74D /* ExplorerView.swift in Sources */,
 				E3CA39F02C8F332E00A51E6B /* TicketView.swift in Sources */,
 				E31F47532C6E10A90053A74D /* RootView.swift in Sources */,
-				E37E91A52C798469000CB881 /* ArtistMemberDomain.swift in Sources */,
+				E3CA39FB2C91E35600A51E6B /* ArtistView.swift in Sources */,
+				E37E91A52C798469000CB881 /* ProfileCore.swift in Sources */,
 				E31F47712C6E1B380053A74D /* FotoDomain.swift in Sources */,
 				E31F476B2C6E1B260053A74D /* TodayView.swift in Sources */,
 				E31F47512C6E10A90053A74D /* CloneWidgetApp.swift in Sources */,
 				E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */,
 				E31F476F2C6E1B320053A74D /* FotoView.swift in Sources */,
+				E3CA39FE2C91EA2500A51E6B /* ArtistDomain.swift in Sources */,
 				E3CA39F62C90A21700A51E6B /* CustomBackButton.swift in Sources */,
-				E37E91A32C79845F000CB881 /* ArtistMemberView.swift in Sources */,
+				E37E91A32C79845F000CB881 /* ProfileView.swift in Sources */,
 				E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */,
 				E31F47772C6E1B4D0053A74D /* MyPageView.swift in Sources */,
 				E33E23DE2C841E4100C95173 /* LoadingProgressView.swift in Sources */,

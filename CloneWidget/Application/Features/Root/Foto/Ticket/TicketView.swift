@@ -9,8 +9,8 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TicketView: View {
-    var store: StoreOf<TicketDomain>
-    @Environment(\.presentationMode) var presentationMode
+    @Bindable var store: StoreOf<TicketDomain>
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack {
@@ -20,7 +20,7 @@ struct TicketView: View {
         .navigationBarTitle("나의 티켓", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton {
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         })
     }
 }

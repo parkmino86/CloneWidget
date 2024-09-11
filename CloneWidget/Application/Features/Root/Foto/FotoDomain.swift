@@ -16,7 +16,7 @@ struct FotoDomain {
     struct State: Equatable {
         var path = StackState<Path.State>()
         var artistSelector: CategorySelectorCore.State = .init(categories: IdentifiedArrayOf())
-        var artistMembers: IdentifiedArrayOf<ArtistMemberDomain.State> = []
+        var artistMembers: IdentifiedArrayOf<ProfileCore.State> = []
         var selectedArtist: String?
     }
     
@@ -25,14 +25,17 @@ struct FotoDomain {
         @ObservableState
         enum State: Equatable {
             case ticket(TicketDomain.State)
+            case artist(ArtistDomain.State)
         }
         
         enum Action: Equatable {
             case ticket(TicketDomain.Action)
+            case artist(ArtistDomain.Action)
         }
         
         var body: some ReducerOf<Self> {
             Scope(state: \.ticket, action: \.ticket) { TicketDomain() }
+            Scope(state: \.artist, action: \.artist) { ArtistDomain() }
         }
     }
 
@@ -42,11 +45,11 @@ struct FotoDomain {
         case fetchArtists
         case fetchArtistsResponse(TaskResult<[CategoryButtonCore.State]>)
         case fetchArtistMembers(String)
-        case fetchArtistMembersResponse(TaskResult<[ArtistMemberDomain.State]>)
+        case fetchArtistMembersResponse(TaskResult<[ProfileCore.State]>)
 
         case didPressMyButton
         case artistSelector(CategorySelectorCore.Action)
-        case artistMember(id: ArtistMemberDomain.State.ID, action: ArtistMemberDomain.Action)
+        case artistMember(id: ProfileCore.State.ID, action: ProfileCore.Action)
         
         case showLoading
         case hideLoading
@@ -69,7 +72,6 @@ struct FotoDomain {
                     do {
                         let artists = try await fotoClient.fetchArtists()
                         await send(.showLoading)
-                        try await Task.sleep(nanoseconds: 1_000_000_000)
                         await send(.fetchArtistsResponse(.success(artists)))
                         await send(.hideLoading)
                     } catch {
@@ -95,7 +97,7 @@ struct FotoDomain {
             case let .fetchArtistMembers(artist):
                 return .run { send in
                     do {
-                        let members = try await fotoClient.fetchMembers(artist)
+                        let members = try await fotoClient.fetchArtistMembers(artist)
                         await send(.fetchArtistMembersResponse(.success(members)))
                     } catch {
                         await send(.fetchArtistMembersResponse(.failure(error)))
@@ -123,8 +125,11 @@ struct FotoDomain {
                 state.selectedArtist = selectedCategory.text
                 return .send(.fetchArtistMembers(selectedCategory.text))
 
-            case let .artistMember(id, action):
-                AppLog.log("Artist Member Action - ID: \(id), Action: \(action)")
+            case let .artistMember(id, .profileSelected):
+                if let selectedMember = state.artistMembers.first(where: { $0.id == id }) {
+                    AppLog.log("Artist Member Selected - Name: \(selectedMember.name)")
+                    state.path.append(.artist(ArtistDomain.State(name: selectedMember.name, group: selectedMember.group)))
+                }
                 return .none
                 
             default:
@@ -132,7 +137,7 @@ struct FotoDomain {
             }
         }
         .forEach(\.artistMembers, action: /Action.artistMember(id:action:)) {
-            ArtistMemberDomain()
+            ProfileCore()
         }
         .forEach(\.path, action: \.path) { Path() }
     }

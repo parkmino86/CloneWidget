@@ -77,7 +77,7 @@ struct FotoView: View {
                                         action: \.artistMember
                                     )
                                 ) { artistMemberStore in
-                                    ArtistMemberView(store: artistMemberStore)
+                                    ProfileView(store: artistMemberStore)
                                 }
                             }
                         },
@@ -121,6 +121,10 @@ struct FotoView: View {
             case .ticket:
                 if let store = store.scope(state: \.ticket, action: \.ticket) {
                     TicketView(store: store)
+                }
+            case .artist:
+                if let store = store.scope(state: \.artist, action: \.artist) {
+                    ArtistView(store: store)
                 }
             }
         }

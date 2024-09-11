@@ -10,7 +10,7 @@ extension DependencyValues {
 
 @DependencyClient
 struct FotoClient {
-    var fetchMembers: @Sendable (String) async throws -> [ArtistMemberDomain.State]
+    var fetchArtistMembers: @Sendable (String) async throws -> [ProfileCore.State]
     var fetchArtists: @Sendable () async throws -> [CategoryButtonCore.State]
 }
 
@@ -18,8 +18,8 @@ extension FotoClient: DependencyKey {
     static let liveValue: FotoClient = {
         let service = FotoService()
         return Self(
-            fetchMembers: { group in
-                return try await service.fetchMembers(for: group)
+            fetchArtistMembers: { group in
+                return try await service.fetchArtistMembers(for: group)
             },
             fetchArtists: {
                 return try await service.fetchArtists()
@@ -30,8 +30,8 @@ extension FotoClient: DependencyKey {
     static let previewValue: FotoClient = {
         let service = FotoService()
         return Self(
-            fetchMembers: { group in
-                try await service.fetchMembers(for: group)
+            fetchArtistMembers: { group in
+                try await service.fetchArtistMembers(for: group)
             },
             fetchArtists: {
                 try await service.fetchArtists()
@@ -40,26 +40,26 @@ extension FotoClient: DependencyKey {
     }()
 
     private actor FotoService {
-        private var storedMembers: [ArtistMemberDomain.State] = [
-            ArtistMemberDomain.State(name: "Hongjoong", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "Seonghwa", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "Yunho", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "Yeosang", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "San", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "Mingi", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "Wooyoung", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "Jongho", group: "ATEEZ"),
-            ArtistMemberDomain.State(name: "RM", group: "BTS"),
-            ArtistMemberDomain.State(name: "Jin", group: "BTS"),
-            ArtistMemberDomain.State(name: "Suga", group: "BTS"),
-            ArtistMemberDomain.State(name: "J-Hope", group: "BTS"),
-            ArtistMemberDomain.State(name: "Jimin", group: "BTS"),
-            ArtistMemberDomain.State(name: "V", group: "BTS"),
-            ArtistMemberDomain.State(name: "Jungkook", group: "BTS"),
-            ArtistMemberDomain.State(name: "Jisoo", group: "BLACKPINK"),
-            ArtistMemberDomain.State(name: "Jennie", group: "BLACKPINK"),
-            ArtistMemberDomain.State(name: "Rosé", group: "BLACKPINK"),
-            ArtistMemberDomain.State(name: "Lisa", group: "BLACKPINK"),
+        private var storedMembers: [ProfileCore.State] = [
+            ProfileCore.State(name: "Hongjoong", group: "ATEEZ"),
+            ProfileCore.State(name: "Seonghwa", group: "ATEEZ"),
+            ProfileCore.State(name: "Yunho", group: "ATEEZ"),
+            ProfileCore.State(name: "Yeosang", group: "ATEEZ"),
+            ProfileCore.State(name: "San", group: "ATEEZ"),
+            ProfileCore.State(name: "Mingi", group: "ATEEZ"),
+            ProfileCore.State(name: "Wooyoung", group: "ATEEZ"),
+            ProfileCore.State(name: "Jongho", group: "ATEEZ"),
+            ProfileCore.State(name: "RM", group: "BTS"),
+            ProfileCore.State(name: "Jin", group: "BTS"),
+            ProfileCore.State(name: "Suga", group: "BTS"),
+            ProfileCore.State(name: "J-Hope", group: "BTS"),
+            ProfileCore.State(name: "Jimin", group: "BTS"),
+            ProfileCore.State(name: "V", group: "BTS"),
+            ProfileCore.State(name: "Jungkook", group: "BTS"),
+            ProfileCore.State(name: "Jisoo", group: "BLACKPINK"),
+            ProfileCore.State(name: "Jennie", group: "BLACKPINK"),
+            ProfileCore.State(name: "Rosé", group: "BLACKPINK"),
+            ProfileCore.State(name: "Lisa", group: "BLACKPINK"),
         ]
         
         private var storedArtists: [CategoryButtonCore.State] = [
@@ -68,7 +68,7 @@ extension FotoClient: DependencyKey {
             CategoryButtonCore.State(text: "BLACKPINK", isSelected: false)
         ]
 
-        func fetchMembers(for group: String) async throws -> [ArtistMemberDomain.State] {
+        func fetchArtistMembers(for group: String) async throws -> [ProfileCore.State] {
             return storedMembers.filter { $0.group == group }
         }
         

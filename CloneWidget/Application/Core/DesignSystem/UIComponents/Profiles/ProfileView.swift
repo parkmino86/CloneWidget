@@ -1,5 +1,5 @@
 //
-//  ArtistMemberView.swift
+//  ProfileView.swift
 //  CloneWidget
 //
 //  Created by minoh.park on 8/24/24.
@@ -8,8 +8,8 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct ArtistMemberView: View {
-    var store: StoreOf<ArtistMemberDomain>
+struct ProfileView: View {
+    var store: StoreOf<ProfileCore>
 
     var body: some View {
         VStack {
@@ -33,10 +33,10 @@ struct ArtistMemberView: View {
 }
 
 #Preview {
-    ArtistMemberView(
+    ProfileView(
         store: Store(
-            initialState: ArtistMemberDomain.State(name: "Hongjoong", group: "ATEEZ"),
-            reducer: { ArtistMemberDomain() }
+            initialState: ProfileCore.State(name: "Hongjoong", group: "ATEEZ"),
+            reducer: { ProfileCore() }
         )
     )
 }
