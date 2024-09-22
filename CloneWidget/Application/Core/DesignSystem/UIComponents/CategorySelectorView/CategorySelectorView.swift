@@ -14,17 +14,15 @@ struct CategorySelectorView: View {
     let store: StoreOf<CategorySelectorCore>
 
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { _ in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEachStore(
-                        self.store.scope(state: \.categories, action: \.categoryButton)
-                    ) { childStore in
-                        CategoryButton(store: childStore)
-                    }
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEachStore(
+                    store.scope(state: \.categories, action: \.categoryButton)
+                ) { childStore in
+                    CategoryButton(store: childStore)
                 }
-                .padding(.vertical, 8)
             }
+            .padding(.vertical, 8)
         }
     }
 }
@@ -33,6 +31,7 @@ struct CategorySelectorView: View {
 
 @Reducer
 struct CategorySelectorCore {
+    @ObservableState
     struct State: Equatable {
         var categories: IdentifiedArrayOf<CategoryButtonCore.State>
     }
