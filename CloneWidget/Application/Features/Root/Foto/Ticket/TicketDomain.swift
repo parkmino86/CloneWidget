@@ -8,9 +8,9 @@
 import ComposableArchitecture
 
 @Reducer
-struct TicketDomain { 
+struct TicketDomain {
     @Dependency(\.subscriptionPurchaseClient) var subscriptionPurchaseClient
-    
+
     @ObservableState
     struct State: Equatable {
         var isSubscriptionPurchaseViewPresented: Bool = false
@@ -25,12 +25,12 @@ struct TicketDomain {
         BindingReducer()
         Reduce { state, action in
             switch action {
-                case .purchaseButtonTapped:
-                    state.isSubscriptionPurchaseViewPresented = true
-                    return .none
-                default:
-                    return .none
-                }
+            case .purchaseButtonTapped:
+                state.isSubscriptionPurchaseViewPresented = true
+                return .none
+            default:
+                return .none
+            }
         }
     }
 }

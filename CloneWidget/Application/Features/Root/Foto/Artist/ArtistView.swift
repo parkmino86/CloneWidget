@@ -11,7 +11,7 @@ import SwiftUI
 struct ArtistView: View {
     @Bindable var store: StoreOf<ArtistDomain>
     @Environment(\.dismiss) var dismiss
-    
+
     var body: some View {
         VStack {
             Text("\(store.name)")

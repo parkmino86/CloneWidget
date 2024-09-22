@@ -16,7 +16,8 @@ struct RootView: View {
             TabView(selection: $store.selectedTab.sending(\.tabSelected)) {
                 TodayView(store: self.store.scope(
                     state: \.today,
-                    action: \.today)
+                    action: \.today
+                )
                 )
                 .tabItem {
                     Label("Today", systemImage: "calendar")
@@ -25,7 +26,8 @@ struct RootView: View {
 
                 FotoView(store: self.store.scope(
                     state: \.foto,
-                    action: \.foto)
+                    action: \.foto
+                )
                 )
                 .tabItem {
                     Label("Foto", systemImage: "photo")
@@ -34,7 +36,8 @@ struct RootView: View {
 
                 ExplorerView(store: self.store.scope(
                     state: \.explorer,
-                    action: \.explorer)
+                    action: \.explorer
+                )
                 )
                 .tabItem {
                     Label("Explorer", systemImage: "safari")
@@ -43,17 +46,19 @@ struct RootView: View {
 
                 MyPageView(store: self.store.scope(
                     state: \.myPage,
-                    action: \.myPage)
+                    action: \.myPage
+                )
                 )
                 .tabItem {
                     Label("My Page", systemImage: "person")
                 }
                 .tag(RootDomain.Tab.myPage)
             }
-            
+
             LoadingProgressView(store: self.store.scope(
                 state: \.global,
-                action: \.global)
+                action: \.global
+            )
             )
         }
     }

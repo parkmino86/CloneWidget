@@ -17,7 +17,9 @@ struct SubscriptionOptionView: View {
         ScrollView {
             VStack(spacing: 12) {
                 ForEachStore(
-                    store.scope(state: \.options, action: SubscriptionOptionCore.Action.subscriptionOption(id:action:))
+                    store.scope(
+                        state: \.options,
+                        action: SubscriptionOptionCore.Action.subscriptionOption(id:action:))
                 ) {
                     SubscriptionOptionButton(store: $0)
                         .padding(.horizontal, 16)
@@ -35,6 +37,7 @@ struct SubscriptionOptionCore {
     @ObservableState
     struct State: Equatable {
         var options: IdentifiedArrayOf<SubscriptionOptionButtonCore.State> = []
+        var selectedOptionID: UUID? = nil
     }
 
     enum Action: Equatable {
@@ -45,7 +48,7 @@ struct SubscriptionOptionCore {
         Reduce { state, action in
             switch action {
             case let .subscriptionOption(id, .didSelectSubscriptionOption):
-                // 구독 옵션 리스트에서 선택된 옵션 업데이트
+                state.selectedOptionID = id
                 state.options = IdentifiedArray(
                     uniqueElements: state.options.map { option in
                         var updatedOption = option
@@ -71,7 +74,7 @@ struct SubscriptionOptionCore {
                 options: [
                     SubscriptionOptionButtonCore.State(name: "Option 1", price: 5500, isSelected: false),
                     SubscriptionOptionButtonCore.State(name: "Option 2", price: 11000, isSelected: true),
-                    SubscriptionOptionButtonCore.State(name: "Option 3", price: 16500, isSelected: false)
+                    SubscriptionOptionButtonCore.State(name: "Option 3", price: 16500, isSelected: false),
                 ]
             ),
             reducer: { SubscriptionOptionCore() }

@@ -26,10 +26,10 @@ extension SubscriptionPurchaseClient: DependencyKey {
         let service = SubscriptionService()
         return Self(
             fetchSubscriptionOptions: {
-                return try await service.fetchSubscriptionOptions()
+                try await service.fetchSubscriptionOptions()
             },
             purchaseSubscription: { option in
-                return try await service.purchase(option)
+                try await service.purchase(option)
             }
         )
     }()

@@ -19,12 +19,12 @@ struct SubscriptionOptionButton: View {
                 Image(systemName: viewStore.isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(viewStore.isSelected ? .blue : .gray)
                     .padding(.trailing, 8)
-                
+
                 VStack(alignment: .leading) {
                     Text(viewStore.name)
                         .font(.headline)
                         .padding(.bottom, 4)
-                    
+
                     Text("\(viewStore.price, specifier: "%.0f")원 / 월")
                         .font(.subheadline)
                 }

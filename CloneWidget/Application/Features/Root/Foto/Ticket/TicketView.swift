@@ -15,11 +15,11 @@ struct TicketView: View {
     var body: some View {
         VStack {
             Spacer()
-            
+
             Text("이용 중인 티켓이 없습니다.")
-            
+
             Spacer()
-            
+
             Button(action: {
                 store.send(.purchaseButtonTapped)
             }) {
@@ -35,7 +35,14 @@ struct TicketView: View {
             .sheet(
                 isPresented: $store.isSubscriptionPurchaseViewPresented
             ) {
-                SubscriptionPurchaseView()
+                SubscriptionPurchaseView(
+                    store: Store(
+                        initialState: SubscriptionPurchaseDomain.State(),
+                        reducer: { SubscriptionPurchaseDomain() }
+                    )
+                )
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
             }
         }
         .padding(.bottom, 20)

@@ -19,7 +19,7 @@ struct FotoDomain {
         var artistMembers: IdentifiedArrayOf<ProfileCore.State> = []
         var selectedArtist: String?
     }
-    
+
     @Reducer
     struct Path: Equatable {
         @ObservableState
@@ -27,12 +27,12 @@ struct FotoDomain {
             case ticket(TicketDomain.State)
             case artist(ArtistDomain.State)
         }
-        
+
         enum Action: Equatable {
             case ticket(TicketDomain.Action)
             case artist(ArtistDomain.Action)
         }
-        
+
         var body: some ReducerOf<Self> {
             Scope(state: \.ticket, action: \.ticket) { TicketDomain() }
             Scope(state: \.artist, action: \.artist) { ArtistDomain() }
@@ -47,10 +47,10 @@ struct FotoDomain {
         case fetchArtistMembers(String)
         case fetchArtistMembersResponse(TaskResult<[ProfileCore.State]>)
 
-        case didPressMyButton
+        case myButtonTapped
         case artistSelector(CategorySelectorCore.Action)
         case artistMember(id: ProfileCore.State.ID, action: ProfileCore.Action)
-        
+
         case showLoading
         case hideLoading
     }
@@ -81,7 +81,7 @@ struct FotoDomain {
 
             case let .fetchArtistsResponse(result):
                 switch result {
-                case .success(let artists):
+                case let .success(artists):
                     state.artistSelector = CategorySelectorCore.State(
                         categories: IdentifiedArray(uniqueElements: artists)
                     )
@@ -106,14 +106,14 @@ struct FotoDomain {
 
             case let .fetchArtistMembersResponse(result):
                 switch result {
-                case .success(let members):
+                case let .success(members):
                     state.artistMembers = IdentifiedArray(uniqueElements: members)
                 case .failure:
                     return .none
                 }
                 return .none
 
-            case .didPressMyButton:
+            case .myButtonTapped:
                 AppLog.log("My button tapped")
                 state.path.append(.ticket(TicketDomain.State()))
                 return .none
@@ -131,7 +131,7 @@ struct FotoDomain {
                     state.path.append(.artist(ArtistDomain.State(name: selectedMember.name, group: selectedMember.group)))
                 }
                 return .none
-                
+
             default:
                 return .none
             }

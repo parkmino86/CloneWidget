@@ -29,17 +29,17 @@ actor FotoService {
         ProfileCore.State(name: "Rosé", group: "BLACKPINK"),
         ProfileCore.State(name: "Lisa", group: "BLACKPINK"),
     ]
-    
+
     private var storedArtists: [CategoryButtonCore.State] = [
         CategoryButtonCore.State(text: "ATEEZ", isSelected: true),
         CategoryButtonCore.State(text: "BTS", isSelected: false),
-        CategoryButtonCore.State(text: "BLACKPINK", isSelected: false)
+        CategoryButtonCore.State(text: "BLACKPINK", isSelected: false),
     ]
 
     func fetchArtistMembers(for group: String) async throws -> [ProfileCore.State] {
         return storedMembers.filter { $0.group == group }
     }
-    
+
     func fetchArtists() async throws -> [CategoryButtonCore.State] {
         return storedArtists
     }

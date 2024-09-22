@@ -19,23 +19,23 @@ struct RootDomain {
     @ObservableState
     struct State: Equatable {
         var selectedTab = Tab.explorer
-        
+
         var today = TodayDomain.State()
         var foto = FotoDomain.State()
         var explorer = ExplorerDomain.State()
         var myPage = MyPageDomain.State()
-                
+
         var global = LoadingProgressCore.State()
     }
 
     enum Action: Equatable {
         case tabSelected(Tab)
-        
+
         case today(TodayDomain.Action)
         case foto(FotoDomain.Action)
         case explorer(ExplorerDomain.Action)
         case myPage(MyPageDomain.Action)
-        
+
         case global(LoadingProgressCore.Action)
     }
 
@@ -51,19 +51,19 @@ struct RootDomain {
             case let .tabSelected(tab):
                 state.selectedTab = tab
                 return .none
-                
+
             case let .foto(action):
                 switch action {
                 case .showLoading:
                     return .send(.global(.showLoading))
-                    
+
                 case .hideLoading:
                     return .send(.global(.hideLoading))
-                    
+
                 default:
                     return .none
                 }
-                
+
             default:
                 return .none
             }

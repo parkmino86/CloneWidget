@@ -19,10 +19,10 @@ extension FotoClient: DependencyKey {
         let service = FotoService()
         return Self(
             fetchArtistMembers: { group in
-                return try await service.fetchArtistMembers(for: group)
+                try await service.fetchArtistMembers(for: group)
             },
             fetchArtists: {
-                return try await service.fetchArtists()
+                try await service.fetchArtists()
             }
         )
     }()

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FotoView: View {
     @Bindable var store: StoreOf<FotoDomain>
-    
+
     var body: some View {
         NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
             ScrollView {
@@ -59,39 +59,40 @@ struct FotoView: View {
                             .font(.body)
                     }
                     .padding(.horizontal, 16)
-                    
+
                     LazyVStack(alignment: .leading, spacing: 8, pinnedViews: [.sectionHeaders]) {
                         Section(content: {
-                            CategorySelectorView(
-                                store: store.scope(
-                                    state: \.artistSelector,
-                                    action: \.artistSelector
-                                )
-                            )
-                            
-                            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3),
-                                      spacing: 16) {
-                                ForEachStore(
-                                    store.scope(
-                                        state: \.artistMembers,
-                                        action: \.artistMember
+                                    CategorySelectorView(
+                                        store: store.scope(
+                                            state: \.artistSelector,
+                                            action: \.artistSelector
+                                        )
                                     )
-                                ) { artistMemberStore in
-                                    ProfileView(store: artistMemberStore)
-                                }
-                            }
-                        },
-                        header: {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text("추천 아티스트")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .padding(.top, 16)
-                                    .padding(.bottom, 8)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .background(.background)
-                        })
+
+                                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3),
+                                              spacing: 16)
+                                    {
+                                        ForEachStore(
+                                            store.scope(
+                                                state: \.artistMembers,
+                                                action: \.artistMember
+                                            )
+                                        ) { artistMemberStore in
+                                            ProfileView(store: artistMemberStore)
+                                        }
+                                    }
+                                },
+                                header: {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text("추천 아티스트")
+                                            .font(.title3)
+                                            .fontWeight(.bold)
+                                            .padding(.top, 16)
+                                            .padding(.bottom, 8)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                    .background(.background)
+                                })
                     }
                 }
                 .padding(.horizontal, 16)
@@ -107,7 +108,7 @@ struct FotoView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        store.send(.didPressMyButton)
+                        store.send(.myButtonTapped)
                     }) {
                         Text("my")
                             .font(.headline)
@@ -115,7 +116,7 @@ struct FotoView: View {
                     }
                 }
             }
-            
+
         } destination: { store in
             switch store.state {
             case .ticket:
