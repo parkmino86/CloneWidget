@@ -30,6 +30,7 @@
 		E37E91A52C798469000CB881 /* ProfileCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A42C798469000CB881 /* ProfileCore.swift */; };
 		E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37FADC22C79BADB00290FE1 /* FotoClient.swift */; };
 		E3A0A69C2C9FE05800D2E301 /* FotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0A69B2C9FE05800D2E301 /* FotoService.swift */; };
+		E3A0A69F2C9FE17F00D2E301 /* SubscriptionOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A0A69E2C9FE17E00D2E301 /* SubscriptionOptionButton.swift */; };
 		E3CA39EE2C8F331600A51E6B /* TicketDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39ED2C8F331600A51E6B /* TicketDomain.swift */; };
 		E3CA39F02C8F332E00A51E6B /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39EF2C8F332E00A51E6B /* TicketView.swift */; };
 		E3CA39F62C90A21700A51E6B /* CustomBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */; };
@@ -61,6 +62,7 @@
 		E37E91A42C798469000CB881 /* ProfileCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCore.swift; sourceTree = "<group>"; };
 		E37FADC22C79BADB00290FE1 /* FotoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoClient.swift; sourceTree = "<group>"; };
 		E3A0A69B2C9FE05800D2E301 /* FotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoService.swift; sourceTree = "<group>"; };
+		E3A0A69E2C9FE17E00D2E301 /* SubscriptionOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionOptionButton.swift; sourceTree = "<group>"; };
 		E3CA39ED2C8F331600A51E6B /* TicketDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDomain.swift; sourceTree = "<group>"; };
 		E3CA39EF2C8F332E00A51E6B /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		E3CA39F52C90A21700A51E6B /* CustomBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButton.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				E3CA39FC2C91E94C00A51E6B /* Profiles */,
 				E3CA39F42C90A20B00A51E6B /* Buttons */,
+				E3A0A69D2C9FE16B00D2E301 /* SubscriptionOptionView */,
 				E340E6C72C78DA4E00CD901F /* CategorySelectorView */,
 				E30FAB742C78C4E7009C0807 /* Indicator */,
 				E30FAB6E2C78C4BE009C0807 /* Toast */,
@@ -407,6 +410,14 @@
 			path = APIService;
 			sourceTree = "<group>";
 		};
+		E3A0A69D2C9FE16B00D2E301 /* SubscriptionOptionView */ = {
+			isa = PBXGroup;
+			children = (
+				E3A0A69E2C9FE17E00D2E301 /* SubscriptionOptionButton.swift */,
+			);
+			path = SubscriptionOptionView;
+			sourceTree = "<group>";
+		};
 		E3CA39EC2C8F32FD00A51E6B /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +554,7 @@
 				E3A0A69C2C9FE05800D2E301 /* FotoService.swift in Sources */,
 				E340E6C62C78DA4B00CD901F /* CategorySelectorView.swift in Sources */,
 				E31F476D2C6E1B2C0053A74D /* TodayDomain.swift in Sources */,
+				E3A0A69F2C9FE17F00D2E301 /* SubscriptionOptionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
