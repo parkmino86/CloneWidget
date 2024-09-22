@@ -15,7 +15,6 @@ struct TicketView: View {
     var body: some View {
         VStack {
             Text("이용 중인 티켓이 없습니다.")
-                .font(.title3)
         }
         .navigationBarTitle("나의 티켓", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
@@ -23,4 +22,15 @@ struct TicketView: View {
             dismiss()
         })
     }
+}
+
+#Preview {
+    TicketView(
+        store: Store(
+            initialState: TicketDomain.State(),
+            reducer: {
+                TicketDomain()
+            }
+        )
+    )
 }
