@@ -14,8 +14,31 @@ struct TicketView: View {
 
     var body: some View {
         VStack {
+            Spacer()
+            
             Text("이용 중인 티켓이 없습니다.")
+            
+            Spacer()
+            
+            Button(action: {
+                store.send(.purchaseButtonTapped)
+            }) {
+                Text("구독권 구매하기")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 16)
+            }
+            .sheet(
+                isPresented: $store.isSubscriptionPurchaseViewPresented
+            ) {
+                SubscriptionPurchaseView()
+            }
         }
+        .padding(.bottom, 20)
         .navigationBarTitle("나의 티켓", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton {

@@ -8,15 +8,29 @@
 import ComposableArchitecture
 
 @Reducer
-struct TicketDomain {    
+struct TicketDomain { 
+    @Dependency(\.subscriptionPurchaseClient) var subscriptionPurchaseClient
+    
     @ObservableState
-    struct State: Equatable {}
+    struct State: Equatable {
+        var isSubscriptionPurchaseViewPresented: Bool = false
+    }
 
-    enum Action: Equatable {}
+    enum Action: Equatable, BindableAction {
+        case binding(BindingAction<State>)
+        case purchaseButtonTapped
+    }
 
     var body: some Reducer<State, Action> {
-        Reduce { _, _ in
-            .none
+        BindingReducer()
+        Reduce { state, action in
+            switch action {
+                case .purchaseButtonTapped:
+                    state.isSubscriptionPurchaseViewPresented = true
+                    return .none
+                default:
+                    return .none
+                }
         }
     }
 }
