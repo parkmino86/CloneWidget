@@ -266,13 +266,6 @@
 			path = BaseAPI;
 			sourceTree = "<group>";
 		};
-		E30FAB7F2C78C57F009C0807 /* APIService */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = APIService;
-			sourceTree = "<group>";
-		};
 		E31F47442C6E10A90053A74D = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				E31F47652C6E1AE20053A74D /* Features */,
-				E3D7BAEC2C84BD98009C1F83 /* Services */,
+				E3A0A6992C9FDEF300D2E301 /* Services */,
 				E30FAB6A2C78C3C6009C0807 /* Widget */,
 				E30FAB6B2C78C465009C0807 /* Core */,
 				E31F47502C6E10A90053A74D /* CloneWidgetApp.swift */,
@@ -396,6 +389,21 @@
 			path = LoadingIndicator;
 			sourceTree = "<group>";
 		};
+		E3A0A6992C9FDEF300D2E301 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E3A0A69A2C9FDEF800D2E301 /* APIService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E3A0A69A2C9FDEF800D2E301 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIService;
+			sourceTree = "<group>";
+		};
 		E3CA39EC2C8F32FD00A51E6B /* Ticket */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,14 +437,6 @@
 				E37E91A42C798469000CB881 /* ProfileCore.swift */,
 			);
 			path = Profiles;
-			sourceTree = "<group>";
-		};
-		E3D7BAEC2C84BD98009C1F83 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E30FAB7F2C78C57F009C0807 /* APIService */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
