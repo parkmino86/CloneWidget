@@ -14,18 +14,16 @@ struct LoadingProgressView: View {
     let store: StoreOf<LoadingProgressCore>
 
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            if viewStore.isLoading {
-                ZStack {
-                    Color.black.opacity(0.4)
-                        .ignoresSafeArea()
+        if store.isLoading {
+            ZStack {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
 
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        .scaleEffect(1.5)
-                }
-                .transition(.opacity.animation(.easeInOut(duration: 0.2)))
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(1.5)
             }
+            .transition(.opacity.animation(.easeInOut(duration: 0.2)))
         }
     }
 }
@@ -34,6 +32,7 @@ struct LoadingProgressView: View {
 
 @Reducer
 struct LoadingProgressCore {
+    @ObservableState
     struct State: Equatable {
         var isLoading: Bool = false
         var loadingCount: Int = 0
