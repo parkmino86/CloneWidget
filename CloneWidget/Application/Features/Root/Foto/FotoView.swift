@@ -109,7 +109,7 @@ struct FotoView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 0) {
                         Button(action: {
-                            store.send(.myButtonTapped)
+                            store.send(.howToUseButtonTapped)
                         }) {
                             Image(systemName: "questionmark.circle")
                                 .font(.headline)
