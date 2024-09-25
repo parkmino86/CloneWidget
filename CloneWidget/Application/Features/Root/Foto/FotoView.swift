@@ -107,12 +107,22 @@ struct FotoView: View {
                         .fontWeight(.bold)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        store.send(.myButtonTapped)
-                    }) {
-                        Text("my")
-                            .font(.headline)
-                            .foregroundColor(.primary)
+                    HStack(spacing: 0) {
+                        Button(action: {
+                            store.send(.myButtonTapped)
+                        }) {
+                            Image(systemName: "questionmark.circle")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                        }
+
+                        Button(action: {
+                            store.send(.myButtonTapped)
+                        }) {
+                            Text("my")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                        }
                     }
                 }
             }

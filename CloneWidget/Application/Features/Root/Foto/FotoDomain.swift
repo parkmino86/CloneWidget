@@ -47,6 +47,7 @@ struct FotoDomain {
         case fetchArtistMembers(String)
         case fetchArtistMembersResponse(TaskResult<[ProfileCore.State]>)
 
+        case howToUseButtonTapped
         case myButtonTapped
         case artistSelector(CategorySelectorCore.Action)
         case artistMember(id: ProfileCore.State.ID, action: ProfileCore.Action)
@@ -113,6 +114,10 @@ struct FotoDomain {
                 }
                 return .none
 
+            case .howToUseButtonTapped:
+                AppLog.log("How To Use button tapped")
+                return .none
+                
             case .myButtonTapped:
                 AppLog.log("My button tapped")
                 state.path.append(.ticket(TicketDomain.State()))
