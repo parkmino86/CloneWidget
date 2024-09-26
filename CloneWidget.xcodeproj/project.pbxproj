@@ -24,6 +24,7 @@
 		E33E23DE2C841E4100C95173 /* LoadingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33E23DD2C841E4100C95173 /* LoadingProgressView.swift */; };
 		E340E6C42C78DA3B00CD901F /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E340E6C32C78DA3B00CD901F /* CategoryButton.swift */; };
 		E340E6C62C78DA4B00CD901F /* CategorySelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */; };
+		E342A7072CA5A79A00FA4676 /* UINavigationController+SwipeGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E342A7062CA5A79A00FA4676 /* UINavigationController+SwipeGesture.swift */; };
 		E37E91982C79726E000CB881 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91972C79726E000CB881 /* AppLog.swift */; };
 		E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91992C7972A9000CB881 /* Date+Extensions.swift */; };
 		E37E91A32C79845F000CB881 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37E91A22C79845F000CB881 /* ProfileView.swift */; };
@@ -62,6 +63,7 @@
 		E33E23DD2C841E4100C95173 /* LoadingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingProgressView.swift; sourceTree = "<group>"; };
 		E340E6C32C78DA3B00CD901F /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		E340E6C52C78DA4B00CD901F /* CategorySelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectorView.swift; sourceTree = "<group>"; };
+		E342A7062CA5A79A00FA4676 /* UINavigationController+SwipeGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+SwipeGesture.swift"; sourceTree = "<group>"; };
 		E37E91972C79726E000CB881 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		E37E91992C7972A9000CB881 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		E37E91A22C79845F000CB881 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		E30FAB722C78C4D9009C0807 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E342A7062CA5A79A00FA4676 /* UINavigationController+SwipeGesture.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				E3CA39F62C90A21700A51E6B /* CustomBackButton.swift in Sources */,
 				E37E91A32C79845F000CB881 /* ProfileView.swift in Sources */,
 				E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */,
+				E342A7072CA5A79A00FA4676 /* UINavigationController+SwipeGesture.swift in Sources */,
 				E31F47772C6E1B4D0053A74D /* MyPageView.swift in Sources */,
 				E33E23DE2C841E4100C95173 /* LoadingProgressView.swift in Sources */,
 				E3A0A6A82C9FE56100D2E301 /* SubscriptionPurchaseClient.swift in Sources */,
