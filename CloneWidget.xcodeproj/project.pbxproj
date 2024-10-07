@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E3044DF52CB42B0500EA18B0 /* DynamicHeightGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3044DF42CB42B0500EA18B0 /* DynamicHeightGridView.swift */; };
+		E3044DF52CB42B0500EA18B0 /* WaterfallGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3044DF42CB42B0500EA18B0 /* WaterfallGrid.swift */; };
 		E31F47512C6E10A90053A74D /* CloneWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47502C6E10A90053A74D /* CloneWidgetApp.swift */; };
 		E31F47532C6E10A90053A74D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47522C6E10A90053A74D /* RootView.swift */; };
 		E31F47552C6E10AB0053A74D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31F47542C6E10AB0053A74D /* Assets.xcassets */; };
@@ -47,7 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E3044DF42CB42B0500EA18B0 /* DynamicHeightGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightGridView.swift; sourceTree = "<group>"; };
+		E3044DF42CB42B0500EA18B0 /* WaterfallGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallGrid.swift; sourceTree = "<group>"; };
 		E31F474D2C6E10A90053A74D /* CloneWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloneWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31F47502C6E10A90053A74D /* CloneWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloneWidgetApp.swift; sourceTree = "<group>"; };
 		E31F47522C6E10A90053A74D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -98,12 +98,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E3044DF32CB42AED00EA18B0 /* DynamicHeightGridView */ = {
+		E3044DF32CB42AED00EA18B0 /* WaterfallGrid */ = {
 			isa = PBXGroup;
 			children = (
-				E3044DF42CB42B0500EA18B0 /* DynamicHeightGridView.swift */,
+				E3044DF42CB42B0500EA18B0 /* WaterfallGrid.swift */,
 			);
-			path = DynamicHeightGridView;
+			path = WaterfallGrid;
 			sourceTree = "<group>";
 		};
 		E30FAB652C78C2BC009C0807 /* DesignSystem */ = {
@@ -189,7 +189,7 @@
 			children = (
 				E3CA39F42C90A20B00A51E6B /* Buttons */,
 				E340E6C72C78DA4E00CD901F /* CategorySelectorView */,
-				E3044DF32CB42AED00EA18B0 /* DynamicHeightGridView */,
+				E3044DF32CB42AED00EA18B0 /* WaterfallGrid */,
 				E30FAB742C78C4E7009C0807 /* Indicator */,
 				E3CA39FC2C91E94C00A51E6B /* Profiles */,
 				E3A0A69D2C9FE16B00D2E301 /* SubscriptionOptionView */,
@@ -588,7 +588,7 @@
 				E31F47792C6E1B530053A74D /* MyPageDomain.swift in Sources */,
 				E31F47642C6E169D0053A74D /* RootDomain.swift in Sources */,
 				E3A0A6A42C9FE54C00D2E301 /* SubscriptionPurchaseDomain.swift in Sources */,
-				E3044DF52CB42B0500EA18B0 /* DynamicHeightGridView.swift in Sources */,
+				E3044DF52CB42B0500EA18B0 /* WaterfallGrid.swift in Sources */,
 				E31F47732C6E1B400053A74D /* ExplorerView.swift in Sources */,
 				E3CA39F02C8F332E00A51E6B /* TicketView.swift in Sources */,
 				E3A0A6AF2C9FE6DB00D2E301 /* SubscriptionOption.swift in Sources */,
