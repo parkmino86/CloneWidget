@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E3044DF52CB42B0500EA18B0 /* WaterfallGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3044DF42CB42B0500EA18B0 /* WaterfallGrid.swift */; };
+		E3044DF72CB42FCB00EA18B0 /* WaterfallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3044DF62CB42FCB00EA18B0 /* WaterfallCell.swift */; };
+		E3044DF92CB42FFE00EA18B0 /* WaterfallGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3044DF82CB42FFE00EA18B0 /* WaterfallGridView.swift */; };
 		E31F47512C6E10A90053A74D /* CloneWidgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47502C6E10A90053A74D /* CloneWidgetApp.swift */; };
 		E31F47532C6E10A90053A74D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31F47522C6E10A90053A74D /* RootView.swift */; };
 		E31F47552C6E10AB0053A74D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31F47542C6E10AB0053A74D /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		E3044DF42CB42B0500EA18B0 /* WaterfallGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallGrid.swift; sourceTree = "<group>"; };
+		E3044DF62CB42FCB00EA18B0 /* WaterfallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallCell.swift; sourceTree = "<group>"; };
+		E3044DF82CB42FFE00EA18B0 /* WaterfallGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallGridView.swift; sourceTree = "<group>"; };
 		E31F474D2C6E10A90053A74D /* CloneWidget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloneWidget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31F47502C6E10A90053A74D /* CloneWidgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloneWidgetApp.swift; sourceTree = "<group>"; };
 		E31F47522C6E10A90053A74D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -101,7 +105,9 @@
 		E3044DF32CB42AED00EA18B0 /* WaterfallGrid */ = {
 			isa = PBXGroup;
 			children = (
+				E3044DF82CB42FFE00EA18B0 /* WaterfallGridView.swift */,
 				E3044DF42CB42B0500EA18B0 /* WaterfallGrid.swift */,
+				E3044DF62CB42FCB00EA18B0 /* WaterfallCell.swift */,
 			);
 			path = WaterfallGrid;
 			sourceTree = "<group>";
@@ -590,6 +596,7 @@
 				E3A0A6A42C9FE54C00D2E301 /* SubscriptionPurchaseDomain.swift in Sources */,
 				E3044DF52CB42B0500EA18B0 /* WaterfallGrid.swift in Sources */,
 				E31F47732C6E1B400053A74D /* ExplorerView.swift in Sources */,
+				E3044DF92CB42FFE00EA18B0 /* WaterfallGridView.swift in Sources */,
 				E3CA39F02C8F332E00A51E6B /* TicketView.swift in Sources */,
 				E3A0A6AF2C9FE6DB00D2E301 /* SubscriptionOption.swift in Sources */,
 				E31F47532C6E10A90053A74D /* RootView.swift in Sources */,
@@ -602,6 +609,7 @@
 				E37FADC32C79BADB00290FE1 /* FotoClient.swift in Sources */,
 				E31F476F2C6E1B320053A74D /* FotoView.swift in Sources */,
 				E3CA39FE2C91EA2500A51E6B /* ArtistDomain.swift in Sources */,
+				E3044DF72CB42FCB00EA18B0 /* WaterfallCell.swift in Sources */,
 				E3CA39F62C90A21700A51E6B /* CustomBackButton.swift in Sources */,
 				E37E91A32C79845F000CB881 /* ProfileView.swift in Sources */,
 				E37E919A2C7972A9000CB881 /* Date+Extensions.swift in Sources */,
